@@ -30,6 +30,7 @@ public class Home{
         home.setMinimumSize(new Dimension(800,500));
         home.add(logo);
         home.add(f2);
+        home.setLayout(null);
 
         logo.setVerticalAlignment(SwingConstants.TOP);
         logo.setHorizontalAlignment(SwingConstants.LEFT);
