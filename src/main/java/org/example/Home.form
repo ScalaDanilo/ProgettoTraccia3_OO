@@ -6,33 +6,6 @@
     </constraints>
     <properties/>
     <border type="none"/>
-    <children>
-      <grid id="248ff" binding="panelLogo" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="80299" class="javax.swing.JLabel" binding="logo">
-            <constraints/>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="d76d7" binding="panelF2" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-        <constraints/>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="b54bc" class="javax.swing.JLabel" binding="f2">
-            <constraints/>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-    </children>
+    <children/>
   </grid>
 </form>
