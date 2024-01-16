@@ -1,21 +1,22 @@
-package org.example;
+package view;
+import model.ConnessioneDB;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
 
 public class Home implements ActionListener {
     private final JButton tastoLogin;
     private final JButton tastoRegister;
     private final JButton loginReset;
-    private final JToggleButton passReset;
-    private final JTextField login;
+    private final JToggleButton passIcon;
+    public static JTextField login;
     private final JPasswordField password;
     private final JFrame Home;
     private JPanel panelHome;
@@ -41,6 +42,10 @@ public class Home implements ActionListener {
     ImageIcon nascondi = new ImageIcon(imageNascondi);
 
     public Home() throws IOException {
+
+        ConnessioneDB DB = new ConnessioneDB();
+
+        Connection conn = DB.connect_to_db("postgres","postgres","password");
         
         Home = new JFrame();
 
@@ -53,9 +58,9 @@ public class Home implements ActionListener {
         //SCRITTA BENVENUTO
         JLabel benvenutoSu = new JLabel();
         benvenutoSu.setText("Benvenuto su");
-        benvenutoSu.setBounds(290, -120, 500, 300);
+        benvenutoSu.setBounds(320, -120, 500, 300);
         benvenutoSu.setSize(400, 400);
-        benvenutoSu.setFont(new Font("Times",Font.BOLD, 30));
+        benvenutoSu.setFont(new Font("Times",Font.BOLD, 18));
 
         JLabel discoveryFootball = new JLabel();
         discoveryFootball.setText("Discovery Football");
@@ -88,7 +93,19 @@ public class Home implements ActionListener {
         login.setBounds(240, 260, 300, 40);
         login.setFont(new Font("Consolas", Font.PLAIN, 20));
         login.setBorder(new LineBorder(Color.DARK_GRAY, 2, true));
-
+        login.setForeground(Color.LIGHT_GRAY);
+        login.setText("Enter the email.");
+        login.addFocusListener(new FocusListener()
+        {
+            @Override
+            public void focusGained(FocusEvent e) {
+                JTexFieldFocusGained(e);
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                JTexFieldFocusLost(e);
+            }
+        });
 
 
         loginReset = new JButton("", reset);
@@ -96,23 +113,37 @@ public class Home implements ActionListener {
         loginReset.setBackground(Color.GRAY);
         loginReset.addActionListener(this);
 
+
         //PASSWORD
-        password = new javax.swing.JPasswordField();
+        password = new JPasswordField();
         password.setBounds(240, 320, 300, 40);
         password.setFont(new Font("Consolas", Font.PLAIN, 20));
         password.setBorder(new LineBorder(Color.DARK_GRAY, 2, true));
+        password.setForeground(Color.LIGHT_GRAY);
+        password.setEchoChar((char)0);
+        password.setText("Enter the password.");
+        password.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                JPasswordFieldFocusGained(e);
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                JPasswordFieldFocusLost(e);
+            }
+        });
 
-        passReset = new JToggleButton("", mostra);
-        passReset.setBounds(550, 320, 40, 40);
-        passReset.setBackground(Color.GRAY);
-        passReset.addMouseListener(new java.awt.event.MouseAdapter() {
+        passIcon = new JToggleButton("", mostra);
+        passIcon.setBounds(550, 320, 40, 40);
+        passIcon.setBackground(Color.GRAY);
+        passIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JToggleButtonMouseClicked(e);
             }
         });
 
-        //BUTTON
+        //BUTTON LOGIN
         tastoLogin = new JButton("Login");
         tastoLogin.setBounds(240, 390, 140 , 40);
         tastoLogin.addActionListener(this);
@@ -120,13 +151,13 @@ public class Home implements ActionListener {
         tastoLogin.setForeground(Color.LIGHT_GRAY);
         tastoLogin.setBorder(new LineBorder(Color.GRAY, 3, true));
 
+        //BUTTON REGISTER
         tastoRegister = new JButton("Register");
         tastoRegister.setBounds(400, 390, 140 , 40);
         tastoRegister.addActionListener(this);
         tastoRegister.setBackground(Color.DARK_GRAY);
         tastoRegister.setForeground(Color.LIGHT_GRAY);
         tastoRegister.setBorder(new LineBorder(Color.GRAY, 3, true));
-
 
         //FRAME
         Home.add(benvenutoSu);
@@ -139,7 +170,7 @@ public class Home implements ActionListener {
         Home.add(password);
         Home.add(login);
         Home.add(loginReset);
-        Home.add(passReset);
+        Home.add(passIcon);
         Home.setLayout(null);
         Home.setVisible(true);
         Home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -161,7 +192,11 @@ public class Home implements ActionListener {
 
         if(e.getSource() == tastoRegister) {
             Home.setVisible(false);
-            RegisterPage apriRegisterPage = new RegisterPage();
+            try {
+                RegisterPage apriRegisterPage = new RegisterPage();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
         if(e.getSource() == tastoLogin) {
@@ -181,21 +216,55 @@ public class Home implements ActionListener {
             else
             {
                 Home.setVisible(false);
-                HomeUtente vaiHomeUtente = new HomeUtente();
+                try {
+                    HomeUtente vaiHomeUtente = new HomeUtente();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         }
     }
 
     public void JToggleButtonMouseClicked(java.awt.event.MouseEvent evt){
-        if (passReset.isSelected())
+        if (passIcon.isSelected())
         {
             password.setEchoChar((char)0);
-            passReset.setIcon(nascondi);
+            passIcon.setIcon(nascondi);
         }
         else
         {
             password.setEchoChar('●');
-            passReset.setIcon(mostra);
+            passIcon.setIcon(mostra);
+        }
+    }
+
+    private void JTexFieldFocusGained(java.awt.event.FocusEvent evt){
+        if (login.getText().equals("Enter the email.")){
+            login.setText("");
+            login.setForeground(Color.DARK_GRAY);
+        }
+    }
+
+    private void JTexFieldFocusLost(java.awt.event.FocusEvent evt){
+        if (login.getText().equals("")){
+            login.setText("Enter the email.");
+            login.setForeground(Color.LIGHT_GRAY);
+        }
+    }
+
+    private void JPasswordFieldFocusGained(java.awt.event.FocusEvent evt){
+        if (password.getText().equals("Enter the password.")){
+            password.setText("");
+            password.setEchoChar('●');
+            password.setForeground(Color.DARK_GRAY);
+        }
+    }
+
+    private void JPasswordFieldFocusLost(java.awt.event.FocusEvent evt){
+        if (password.getText().equals("")){
+            password.setText("Enter the password.");
+            password.setEchoChar((char)0);
+            password.setForeground(Color.LIGHT_GRAY);
         }
     }
 }
