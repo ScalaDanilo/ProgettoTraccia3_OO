@@ -7,6 +7,9 @@ import model.SponsorSecondari;
 import java.sql.*;
 import java.util.Optional;
 
+/**
+ * The type Home admin postgres dao.
+ */
 public class HomeAdminPostgresDAO implements HomeAdminDAO {
     private String nomeDB = "DataBase DiscoveryFootball";
     private String user = "postgres";

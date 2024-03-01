@@ -8,7 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type Utente postgre dao.
+ */
 public class UtentePostgreDAO implements HomeUtenteDAO {
+    /**
+     * The Conn.
+     */
     Connection conn = new ConnessioneDB().connect_to_db("postgres","postgres","password");
     @Override
     public String[] Calciatori(String nome)

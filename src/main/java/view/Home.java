@@ -9,38 +9,97 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Home.
+ */
 public class Home implements ActionListener {
+    /**
+     * The Controler.
+     */
     public Controller controler;
     private final JButton tastoLogin;
     private final JButton tastoRegister;
     private final JButton loginReset;
     private final JToggleButton passIcon;
+    /**
+     * The constant login.
+     */
     public static JTextField login;
     private final JPasswordField password;
     private final JFrame Home;
     private final JLabel utenteNonTrovato;
     private JPanel panelHome;
 
+    /**
+     * The Buffered image.
+     */
     BufferedImage bufferedImage = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Logo.png"));
+    /**
+     * The Image.
+     */
     Image image = bufferedImage.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+    /**
+     * The Sito.
+     */
     ImageIcon sito = new ImageIcon(image);
 
+    /**
+     * The Buffered image 2.
+     */
     BufferedImage bufferedImage2 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\university.png"));
+    /**
+     * The Image 2.
+     */
     Image image2 = bufferedImage2.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+    /**
+     * The Federico.
+     */
     ImageIcon federico = new ImageIcon(image2);
 
+    /**
+     * The Buffered image 3.
+     */
     BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\reset.png"));
+    /**
+     * The Image 3.
+     */
     Image image3 = bufferedImage3.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+    /**
+     * The Reset.
+     */
     ImageIcon reset = new ImageIcon(image3);
 
+    /**
+     * The Buffered mostra.
+     */
     BufferedImage bufferedMostra = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\mostra.png"));
+    /**
+     * The Image mostra.
+     */
     Image imageMostra = bufferedMostra.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+    /**
+     * The Mostra.
+     */
     ImageIcon mostra = new ImageIcon(imageMostra);
 
+    /**
+     * The Buffered nascondi.
+     */
     BufferedImage bufferedNascondi = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\nascondi.png"));
+    /**
+     * The Image nascondi.
+     */
     Image imageNascondi = bufferedNascondi.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+    /**
+     * The Nascondi.
+     */
     ImageIcon nascondi = new ImageIcon(imageNascondi);
 
+    /**
+     * Instantiates a new Home.
+     *
+     * @throws IOException the io exception
+     */
     public Home() throws IOException {
         
         Home = new JFrame();
@@ -188,6 +247,9 @@ public class Home implements ActionListener {
         logoFedericoII.setBounds(570,10,200,200);
     }
 
+    /**
+     * Init home.
+     */
     public void initHome(){Home.setVisible(true);}
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -229,6 +291,11 @@ public class Home implements ActionListener {
         }
     }
 
+    /**
+     * J toggle button mouse clicked.
+     *
+     * @param evt the evt
+     */
     public void JToggleButtonMouseClicked(java.awt.event.MouseEvent evt){
         if (passIcon.isSelected())
         {

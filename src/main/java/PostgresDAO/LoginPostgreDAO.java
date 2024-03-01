@@ -5,7 +5,13 @@ import DAO.HomeDAO;
 
 import java.sql.*;
 
+/**
+ * The type Login postgre dao.
+ */
 public class LoginPostgreDAO implements HomeDAO {
+    /**
+     * The Conn.
+     */
     Connection conn = new ConnessioneDB().connect_to_db("postgres","postgres","password");
     //Connection conn = DB.connect_to_db("postgres","postgres","password");
     @Override

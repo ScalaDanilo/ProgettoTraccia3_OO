@@ -18,55 +18,204 @@ import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * The type Home utente.
+ */
 public class HomeUtente implements ActionListener{
+    /**
+     * The Controller.
+     */
     public Controller controller;
+    /**
+     * The Welcome.
+     */
     public JLabel Welcome;
+    /**
+     * The Text.
+     */
     public JLabel text;
+    /**
+     * The Scelta.
+     */
     public JComboBox scelta;
+    /**
+     * The Scelte.
+     */
     public String[] scelte;
+    /**
+     * The Selezione.
+     */
     public String selezione;
+    /**
+     * The Ricerca.
+     */
     public JTextField ricerca;
+    /**
+     * The Ricerca button.
+     */
     public JButton ricercaButton;
+    /**
+     * The Home utente.
+     */
     public JFrame HomeUtente;
+    /**
+     * The Top panel.
+     */
     public JPanel TopPanel;
+    /**
+     * The Central panel.
+     */
     public JPanel CentralPanel;
+    /**
+     * The Down panel.
+     */
     public JPanel DownPanel;
+    /**
+     * The Right panel.
+     */
     public JPanel RightPanel;
+    /**
+     * The Left panel.
+     */
     public JPanel LeftPanel;
+    /**
+     * The Default label.
+     */
     public JLabel defaultLabel;
+    /**
+     * The Top label.
+     */
     public JLabel topLabel;
+    /**
+     * The Default panel.
+     */
     public JPanel defaultPanel;
+    /**
+     * The Name panel.
+     */
     public JPanel NamePanel;
+    /**
+     * The Eta panel.
+     */
     public JPanel EtaPanel;
+    /**
+     * The Goal subiti panel.
+     */
     public JPanel GoalSubitiPanel;
+    /**
+     * The Goal segnati panel.
+     */
     public JPanel GoalSegnatiPanel;
+    /**
+     * The Ruolo panel.
+     */
     public JPanel RuoloPanel;
+    /**
+     * The Piede pr panel.
+     */
     public JPanel PiedePRPanel;
+    /**
+     * The Squadra panel.
+     */
     public JPanel SquadraPanel;
+    /**
+     * The Debug panel.
+     */
     public JPanel debugPanel;
+    /**
+     * The Table.
+     */
     public JTable Table;
+    /**
+     * The Table scroll pane.
+     */
     public JScrollPane TableScrollPane;
+    /**
+     * The Top table.
+     */
     public JTable TopTable;
+    /**
+     * The Top table scroll pane.
+     */
     public JScrollPane TopTableScrollPane;
+    /**
+     * The Buffered image.
+     */
     BufferedImage bufferedImage = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Logo.png"));
+    /**
+     * The Image.
+     */
     Image image = bufferedImage.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+    /**
+     * The Sito.
+     */
     ImageIcon sito = new ImageIcon(image);
+    /**
+     * The Buffered image background.
+     */
     BufferedImage bufferedImageBackground = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Sfondo.jpg"));
+    /**
+     * The Image background.
+     */
     Image imageBackground = bufferedImageBackground.getScaledInstance(1000, 600, Image.SCALE_DEFAULT);
+    /**
+     * The Sito background.
+     */
     ImageIcon sitoBackground = new ImageIcon(imageBackground);
+    /**
+     * The Buffered image 2.
+     */
     BufferedImage bufferedImage2 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\university.png"));
+    /**
+     * The Image 2.
+     */
     Image image2 = bufferedImage2.getScaledInstance(180, 180, Image.SCALE_DEFAULT);
+    /**
+     * The Federico.
+     */
     ImageIcon federico = new ImageIcon(image2);
+    /**
+     * The Buffered image 3.
+     */
     BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\ricerca.png"));
+    /**
+     * The Image 3.
+     */
     Image image3 = bufferedImage3.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+    /**
+     * The Ricerca icon.
+     */
     ImageIcon ricercaIcon = new ImageIcon(image3);
+    /**
+     * The Buffered image left.
+     */
     BufferedImage bufferedImageLeft = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Immagine1.jpg"));
+    /**
+     * The Image left.
+     */
     Image imageLeft = bufferedImageLeft.getScaledInstance(195, 400, Image.SCALE_DEFAULT);
+    /**
+     * The Left icon.
+     */
     ImageIcon leftIcon = new ImageIcon(imageLeft);
+    /**
+     * The Buffered image right.
+     */
     BufferedImage bufferedImageRight = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Immagine2.jpg"));
+    /**
+     * The Image right.
+     */
     Image imageRight = bufferedImageRight.getScaledInstance(180, 400, Image.SCALE_DEFAULT);
+    /**
+     * The Right icon.
+     */
     ImageIcon rightIcon = new ImageIcon(imageRight);
 
+    /**
+     * Instantiates a new Home utente.
+     *
+     * @throws IOException the io exception
+     */
     public HomeUtente() throws IOException {
         HomeUtente = new JFrame();
 

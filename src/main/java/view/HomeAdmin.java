@@ -21,231 +21,815 @@ import java.util.Objects;
 import java.util.Optional;
 
 
+/**
+ * The type Home admin.
+ */
 public class HomeAdmin implements ActionListener{
+    /**
+     * The Frame admin.
+     */
     public JFrame frameAdmin = new JFrame();
+    /**
+     * The Modifica.
+     */
     public JButton modifica = new JButton("Modifica");
+    /**
+     * The Inserisci.
+     */
     public JButton inserisci = new JButton("Inserisci");
 
+    /**
+     * The Step 1 inserisci.
+     */
     public JComboBox step1Inserisci;
+    /**
+     * The Step 1 label inserisci.
+     */
     public JLabel step1LabelInserisci = new JLabel("Cosa vuoi inserire?");
+    /**
+     * The Step 1 label modifica.
+     */
     public JLabel step1LabelModifica = new JLabel("Cosa vuoi modificare?");
+    /**
+     * The Go to step 1.
+     */
     JButton goToStep1 = new JButton("Next");
+    /**
+     * The Annulla.
+     */
     JButton annulla = new JButton("Annulla");
 
-    //step 1 INSERISCI GIOCATORE (GIOCATORE)
+    /**
+     * The Step 1 inserisci giocatore nome field.
+     */
+//step 1 INSERISCI GIOCATORE (GIOCATORE)
     JTextField step1Inserisci_Giocatore_NomeField;
+    /**
+     * The Step 1 inserisci giocatore nome label.
+     */
     JLabel step1Inserisci_Giocatore_NomeLabel;
+    /**
+     * The Step 1 inserisci giocatore cognome field.
+     */
     JTextField step1Inserisci_Giocatore_CognomeField;
+    /**
+     * The Step 1 inserisci giocatore cognome label.
+     */
     JLabel step1Inserisci_Giocatore_CognomeLabel;
+    /**
+     * The Ruolo label.
+     */
     JLabel ruoloLabel;
+    /**
+     * The Portiere.
+     */
     JRadioButton portiere;
+    /**
+     * The Difensore.
+     */
     JRadioButton difensore;
+    /**
+     * The Centrocampista.
+     */
     JRadioButton centrocampista;
+    /**
+     * The Attaccante.
+     */
     JRadioButton attaccante;
+    /**
+     * The Step 1 inserisci nazionalita combo.
+     */
     JComboBox step1Inserisci_NazionalitaCombo;
+    /**
+     * The Step 1 inserisci nazionalita label.
+     */
     JLabel step1Inserisci_NazionalitaLabel;
+    /**
+     * The Step 1 inserisci data ritiro giorno.
+     */
     JComboBox step1Inserisci_DataRitiroGiorno;
+    /**
+     * The Step 1 inserisci data ritiro mese.
+     */
     JComboBox step1Inserisci_DataRitiroMese;
+    /**
+     * The Step 1 inserisci data ritiro anno.
+     */
     JComboBox step1Inserisci_DataRitiroAnno;
+    /**
+     * The Step 1 inserisci data ritiro label.
+     */
     JLabel step1Inserisci_DataRitiroLabel;
+    /**
+     * The Step 1 inserire data ritiro radio ig.
+     */
     JRadioButton step1InserireDataRitiroRadioIG;
+    /**
+     * The Step 1 non inserire data ritiro radio ig.
+     */
     JRadioButton step1NonInserireDataRitiroRadioIG;
+    /**
+     * The Data ritiro bt group.
+     */
     ButtonGroup dataRitiroBTGroup = new ButtonGroup();
+    /**
+     * The Step 1 giorno.
+     */
     JComboBox step1Giorno;
+    /**
+     * The Step 1 mese.
+     */
     JComboBox step1Mese;
+    /**
+     * The Step 1 anno.
+     */
     JComboBox step1Anno;
+    /**
+     * The Step 1 piede pr label.
+     */
     JLabel step1PiedePRLabel;
+    /**
+     * The Step 1 piede pr combo.
+     */
     JComboBox step1PiedePRCombo;
+    /**
+     * The Step 1 inserisci data di nascita label.
+     */
     JLabel step1Inserisci_DataDiNascitaLabel;
+    /**
+     * The Avanti to step 2 inserisci giocatore.
+     */
     JButton avantiToStep2InserisciGiocatore;
+    /**
+     * The Step 1 conferma data ritiro button ig.
+     */
     JButton step1confermaDataRitiroButtonIG;
 
+    /**
+     * The Step 1 annulla data ritiro button ig.
+     */
     JButton step1annullaDataRitiroButtonIG;
+    /**
+     * The Scritta errore.
+     */
     JLabel scrittaErrore;
 
     //STEP 2 INSERISCI GIOCATORE (MILITANZA)
 
+    /**
+     * The Step 2 inizio label ig.
+     */
     JLabel step2InizioLabelIG;
+    /**
+     * The Step 2 fine label ig.
+     */
     JLabel step2FineLabelIG;
+    /**
+     * The Step 2 tiri seganti label ig.
+     */
     JLabel step2TiriSegantiLabelIG;
+    /**
+     * The Step 2 partite giocate label ig.
+     */
     JLabel step2PartiteGiocateLabelIG;
+    /**
+     * The Step 2 goal subiti label ig.
+     */
     JLabel step2GoalSubitiLabelIG;
+    /**
+     * The Step 2 inizio giorno ig.
+     */
     JComboBox step2InizioGiornoIG;
+    /**
+     * The Step 2 inizio mese ig.
+     */
     JComboBox step2InizioMeseIG;
+    /**
+     * The Step 2 inizio anno ig.
+     */
     JComboBox step2InizioAnnoIG;
+    /**
+     * The Step 2 fine giorno ig.
+     */
     JComboBox step2FineGiornoIG;
+    /**
+     * The Step 2 fine mese ig.
+     */
     JComboBox step2FineMeseIG;
+    /**
+     * The Step 2 fine anno ig.
+     */
     JComboBox step2FineAnnoIG;
+    /**
+     * The Step 2 fine ancora in atto radio.
+     */
     JRadioButton step2fineAncoraInAttoRadio;
+    /**
+     * The Step 2 fine definita.
+     */
     JRadioButton step2fineDefinita;
+    /**
+     * The Fine militanza group.
+     */
     ButtonGroup fineMilitanzaGroup;
+    /**
+     * The Step 2 conferma fine militanza button.
+     */
     JButton step2confermaFineMilitanzaButton;
+    /**
+     * The Step 2 annulla fine militanza button.
+     */
     JButton step2annullaFineMilitanzaButton;
 
+    /**
+     * The Step 2 tiri segnati field ig.
+     */
     JTextField step2TiriSegnatiFieldIG;
+    /**
+     * The Step 2 partite giocate field ig.
+     */
     JTextField step2PartiteGiocateFieldIG;
+    /**
+     * The Step 2 goal subiti field ig.
+     */
     JTextField step2GoalSubitiFieldIG;
+    /**
+     * The Indietro to step 1 da ig.
+     */
     JButton indietroToStep1DaIG;
+    /**
+     * The Avanti to step 3 ig.
+     */
     JButton avantiToStep3IG;
+    /**
+     * The Errore militanza.
+     */
     JLabel erroreMilitanza;
 
-    //STEP 3 INSERISCI GIOCATORE (SQUADRA)
+    /**
+     * The S 3 inserisci squadra radio ig.
+     */
+//STEP 3 INSERISCI GIOCATORE (SQUADRA)
     JRadioButton s3InserisciSquadraRadioIG;
+    /**
+     * The S 3 trova squadra radio ig.
+     */
     JRadioButton s3TrovaSquadraRadioIG;
+    /**
+     * The S 3 trova squadra label ig.
+     */
     JLabel s3TrovaSquadraLabelIG;
+    /**
+     * The S 3 ins squadra label ig.
+     */
     JLabel s3InsSquadraLabelIG;
+    /**
+     * The S 3 gruppo squadra ig.
+     */
     ButtonGroup s3GruppoSquadraIG;
+    /**
+     * The S 3 conferma squadra button ig.
+     */
     JButton s3ConfermaSquadraButtonIG;
+    /**
+     * The S 3 annulla metodo squadra ig.
+     */
     JButton s3AnnullaMetodoSquadraIG;
+    /**
+     * The Errore conferma metodo squadra ig.
+     */
     JLabel erroreConfermaMetodoSquadraIG;
+    /**
+     * The S 3 trova squadra combo ig.
+     */
     JComboBox s3TrovaSquadraComboIG;
+    /**
+     * The S 3 inserisci nome squadra label ig.
+     */
     JLabel s3InserisciNomeSquadraLabelIG;
+    /**
+     * The S 3 inserisci nome squadra field ig.
+     */
     JTextField s3InserisciNomeSquadraFieldIG;
+    /**
+     * The S 3 inserisci nazionalita squadra label ig.
+     */
     JLabel s3InserisciNazionalitaSquadraLabelIG;
+    /**
+     * The S 3 inserisci nazionalita squadra combo ig.
+     */
     JComboBox s3InserisciNazionalitaSquadraComboIG;
+    /**
+     * The S 3 inserisci sponsor tec squadra label ig.
+     */
     JLabel s3InserisciSponsorTecSquadraLabelIG;
+    /**
+     * The S 3 inserisci sponsor tec squadra field ig.
+     */
     JTextField s3InserisciSponsorTecSquadraFieldIG;
+    /**
+     * The Indietro to step 2 da ig.
+     */
     JButton indietroToStep2DaIG;
+    /**
+     * The Conferma step 3 ig.
+     */
     JButton confermaStep3IG;
+    /**
+     * The S 3 conferma errore label ig.
+     */
     JLabel s3confermaErroreLabelIG;
 
-    //////////////////////
+    /**
+     * The S 1 inserisci nome comp label ic.
+     */
+//////////////////////
     //STEP 1 INSERISCI COMPETIZIONE
     JLabel s1InserisciNomeCompLabelIC;
+    /**
+     * The S 1 inserisci nome comp field ic.
+     */
     JTextField s1InserisciNomeCompFieldIC;
+    /**
+     * The S 1 anno comp label ic.
+     */
     JLabel s1AnnoCompLabelIC;
+    /**
+     * The S 1 anno comp combo ic.
+     */
     JComboBox s1AnnoCompComboIC;
+    /**
+     * The S 1 nome trofeo label ic.
+     */
     JLabel s1nomeTrofeoLabelIC;
+    /**
+     * The S 1 nome trofeo field ic.
+     */
     JTextField s1nomeTrofeoFieldIC;
+    /**
+     * The S 1 anno fine comp label ic.
+     */
     JLabel s1annoFineCompLabelIC;
+    /**
+     * The S 1 anno fine comp combo ic.
+     */
     JComboBox s1AnnoFineCompComboIC;
+    /**
+     * The S 1 seleziona tipo competizione label ic.
+     */
     JLabel s1SelezionaTipoCompetizioneLabelIC;
+    /**
+     * The S 1 nazionale ic.
+     */
     JRadioButton s1NazionaleIC;
+    /**
+     * The S 1 internazionale ic.
+     */
     JRadioButton s1InternazionaleIC;
+    /**
+     * The S 1 gruppo tipo comp ic.
+     */
     ButtonGroup s1GruppoTipoCompIC;
+    /**
+     * The S 1 comp naz combo ic.
+     */
     JComboBox s1CompNazComboIC;
+    /**
+     * The S 1 comp non naz combo ic.
+     */
     JComboBox s1CompNonNazComboIC;
+    /**
+     * The S 1 conferma comp ic.
+     */
     JButton s1ConfermaCompIC;
+    /**
+     * The S 1 annulla comp ic.
+     */
     JButton s1AnnullaCompIC;
+    /**
+     * The S 1 conferma ic.
+     */
     JButton s1ConfermaIC;
 
-    /////////////////////////////
+    /**
+     * The S 1 nome squadra label is.
+     */
+/////////////////////////////
     //STEP 1 INSERISCI SQUADRA
     JLabel s1NomeSquadraLabelIS;
+    /**
+     * The S 1 nome squadra field is.
+     */
     JTextField s1NomeSquadraFieldIS;
+    /**
+     * The S 1 nazionalita label is.
+     */
     JLabel s1NazionalitaLabelIS;
+    /**
+     * The S 1 nazionalita combo is.
+     */
     JComboBox s1NazionalitaComboIS;
+    /**
+     * The S 1 inserisci sponsor tec label is.
+     */
     JLabel s1InserisciSponsorTecLabelIS;
+    /**
+     * The S 1 inserisci sponsor tec field is.
+     */
     JTextField s1InserisciSponsorTecFieldIS;
+    /**
+     * The S 1 conferma is.
+     */
     JButton s1ConfermaIS;
 
-    ///////////////////////////////
+    /**
+     * The S 1 cerca squadra label ss.
+     */
+///////////////////////////////
     //INSERISCI SPONSOR SECONDARI
     JLabel s1CercaSquadraLabelSS;
+    /**
+     * The S 1 cerca squadra combo ss.
+     */
     JComboBox s1CercaSquadraComboSS;
+    /**
+     * The S 1 conferma squadra button ss.
+     */
     JButton s1ConfermaSquadraButtonSS;
+    /**
+     * The S 1 annulla squadra button ss.
+     */
     JButton s1AnnullaSquadraButtonSS;
+    /**
+     * The S 1 inserisci nome sponsor label ss.
+     */
     JLabel s1InserisciNomeSponsorLabelSS;
+    /**
+     * The S 1 inserisci nome sponsor field ss.
+     */
     JTextField s1InserisciNomeSponsorFieldSS;
+    /**
+     * The S 1 conferma inserimento ss.
+     */
     JButton s1ConfermaInserimentoSS;
 
-    /////////////////////////////////
+    /**
+     * The S 1 seleziona giocatore label mm.
+     */
+/////////////////////////////////
     //MODIFICA MILITANZA
     JLabel s1SelezionaGiocatoreLabelMM;
+    /**
+     * The S 1 seleziona giocatore combo mm.
+     */
     JComboBox s1SelezionaGiocatoreComboMM;
+    /**
+     * The S 1 conferma giocatore button mm.
+     */
     JButton s1ConfermaGiocatoreButtonMM;
+    /**
+     * The S 1 annulla giocatore button mm.
+     */
     JButton s1AnnullaGiocatoreButtonMM;
+    /**
+     * The S 1 scelta tra giocatori uguali label mm.
+     */
     JLabel s1SceltaTraGiocatoriUgualiLabelMM;
+    /**
+     * The S 1 scelta tra giocatori uguali combo mm.
+     */
     JComboBox s1SceltaTraGiocatoriUgualiComboMM;
+    /**
+     * The S 1 conferma giocatore button 2 mm.
+     */
     JButton s1ConfermaGiocatoreButton2MM;
+    /**
+     * The S 1 annulla giocatore button 2 mm.
+     */
     JButton s1AnnullaGiocatoreButton2MM;
+    /**
+     * The S 1 inserisci data fine ex militanza label mm.
+     */
     JLabel s1InserisciDataFineExMilitanzaLabelMM;
+    /**
+     * The S 1 inserisci data fine ex militanza giorno combo mm.
+     */
     JComboBox s1InserisciDataFineExMilitanzaGiornoComboMM;
+    /**
+     * The S 1 inserisci data fine ex militanza mese combo mm.
+     */
     JComboBox s1InserisciDataFineExMilitanzaMeseComboMM;
+    /**
+     * The S 1 inserisci data fine ex militanza anno combo mm.
+     */
     JComboBox s1InserisciDataFineExMilitanzaAnnoComboMM;
+    /**
+     * The S 1 inserisci data inizio nuova militanza label mm.
+     */
     JLabel s1InserisciDataInizioNuovaMilitanzaLabelMM;
+    /**
+     * The S 1 inserisci data inizio nuova militanza giorno combo mm.
+     */
     JComboBox s1InserisciDataInizioNuovaMilitanzaGiornoComboMM;
+    /**
+     * The S 1 inserisci data inizio nuova militanza mese combo mm.
+     */
     JComboBox s1InserisciDataInizioNuovaMilitanzaMeseComboMM;
+    /**
+     * The S 1 inserisci data inizio nuova militanza anno combo mm.
+     */
     JComboBox s1InserisciDataInizioNuovaMilitanzaAnnoComboMM;
+    /**
+     * The S 1 inserisci data fine nuova militanza label mm.
+     */
     JLabel s1InserisciDataFineNuovaMilitanzaLabelMM;
+    /**
+     * The S 1 inserisci data fine nuova militanza giorno combo mm.
+     */
     JComboBox s1InserisciDataFineNuovaMilitanzaGiornoComboMM;
+    /**
+     * The S 1 inserisci data fine nuova militanza mese combo mm.
+     */
     JComboBox s1InserisciDataFineNuovaMilitanzaMeseComboMM;
+    /**
+     * The S 1 inserisci data fine nuova militanza anno combo mm.
+     */
     JComboBox s1InserisciDataFineNuovaMilitanzaAnnoComboMM;
+    /**
+     * The S 1 ultima militanza label mm.
+     */
     JLabel s1UltimaMilitanzaLabelMM;
+    /**
+     * The S 1 militanza in atto radio mm.
+     */
     JRadioButton s1MilitanzaInAttoRadioMM;
+    /**
+     * The S 1 militanza finita radio mm.
+     */
     JRadioButton s1MilitanzaFinitaRadioMM;
+    /**
+     * The S 1 conferma fine militanza button mm.
+     */
     JButton s1ConfermaFineMilitanzaButtonMM;
+    /**
+     * The S 1 annulla fine militanza button mm.
+     */
     JButton s1AnnullaFineMilitanzaButtonMM;
+    /**
+     * The Modifica militanza.
+     */
     ButtonGroup ModificaMilitanza;
+    /**
+     * The S 1 inserisci tiri segnati label mm.
+     */
     JLabel s1InserisciTiriSegnatiLabelMM;
+    /**
+     * The S 1 inserisci tiri segnati field mm.
+     */
     JTextField s1InserisciTiriSegnatiFieldMM;
+    /**
+     * The S 1 inserisci partite giocate label mm.
+     */
     JLabel s1InserisciPartiteGiocateLabelMM;
+    /**
+     * The S 1 inserisci partite giocate field mm.
+     */
     JTextField s1InserisciPartiteGiocateFieldMM;
+    /**
+     * The S 1 inserisci goal subiti label mm.
+     */
     JLabel s1InserisciGoalSubitiLabelMM;
+    /**
+     * The S 1 inserisci goal subiti field mm.
+     */
     JTextField s1InserisciGoalSubitiFieldMM;
+    /**
+     * The S 1 seleziona squadra label mm.
+     */
     JLabel s1SelezionaSquadraLabelMM;
+    /**
+     * The S 1 seleziona squadra combo mm.
+     */
     JComboBox s1SelezionaSquadraComboMM;
+    /**
+     * The S 1 conferma inserimento mm.
+     */
     JButton s1ConfermaInserimentoMM;
 
-    /////////////////////////
+    /**
+     * The S 1 seleziona giocatore label mc.
+     */
+/////////////////////////
     //MODIFICA CALCIATOIRE
     JLabel s1SelezionaGiocatoreLabelMC;
+    /**
+     * The S 1 seleziona giocatore combo mc.
+     */
     JComboBox s1SelezionaGiocatoreComboMC;
+    /**
+     * The S 1 conferma giocatore button mc.
+     */
     JButton s1ConfermaGiocatoreButtonMC;
+    /**
+     * The S 1 annulla giocatore button mc.
+     */
     JButton s1AnnullaGiocatoreButtonMC;
+    /**
+     * The S 1 scelta tra giocatori uguali label mc.
+     */
     JLabel s1SceltaTraGiocatoriUgualiLabelMC;
+    /**
+     * The S 1 scelta tra giocatori uguali combo mc.
+     */
     JComboBox s1SceltaTraGiocatoriUgualiComboMC;
+    /**
+     * The S 1 conferma giocatore button 2 mc.
+     */
     JButton s1ConfermaGiocatoreButton2MC;
+    /**
+     * The S 1 annulla giocatore button 2 mc.
+     */
     JButton s1AnnullaGiocatoreButton2MC;
+    /**
+     * The Radio mc.
+     */
     ButtonGroup radioMC;
+    /**
+     * The S 1 inserire data ritiro radio mc.
+     */
     JRadioButton s1InserireDataRitiroRadioMC;
+    /**
+     * The S 1 non inserire data ritiro radio mc.
+     */
     JRadioButton s1NonInserireDataRitiroRadioMC;
+    /**
+     * The S 1 data ritiro label mc.
+     */
     JLabel s1DataRitiroLabelMC;
+    /**
+     * The S 1 conferma scelta ritiro button mc.
+     */
     JButton s1ConfermaSceltaRitiroButtonMC;
+    /**
+     * The S 1 annulla scelta ritiro button mc.
+     */
     JButton s1AnnullaSceltaRitiroButtonMC;
+    /**
+     * The S 1 data ritiro giorno combo mc.
+     */
     JComboBox s1DataRitiroGiornoComboMC;
+    /**
+     * The S 1 data ritiro mese combo mc.
+     */
     JComboBox s1DataRitiroMeseComboMC;
+    /**
+     * The S 1 data ritiro anno combo mc.
+     */
     JComboBox s1DataRitiroAnnoComboMC;
+    /**
+     * The S 1 inserisci feature label mc.
+     */
     JLabel s1InserisciFeatureLabelMC;
+    /**
+     * The S 1 inserisci feature combo mc.
+     */
     JComboBox s1InserisciFeatureComboMC;
+    /**
+     * The S 1 conferma inserimento mc.
+     */
     JButton s1ConfermaInserimentoMC;
 
-    //Inserisci Squadra in competizione
+    /**
+     * The S 1 scegli competizione label isic.
+     */
+//Inserisci Squadra in competizione
     JLabel s1ScegliCompetizioneLabelISIC;
+    /**
+     * The S 1 scegli competizione combo isic.
+     */
     JComboBox s1ScegliCompetizioneComboISIC;
+    /**
+     * The S 1 anno competizione label isic.
+     */
     JLabel s1AnnoCompetizioneLabelISIC;
+    /**
+     * The S 1 anno competizione combo isic.
+     */
     JComboBox s1AnnoCompetizioneComboISIC;
+    /**
+     * The S 1 conferma competizione button isic.
+     */
     JButton s1ConfermaCompetizioneButtonISIC;
+    /**
+     * The S 1 annulla competizione button isic.
+     */
     JButton s1AnnullaCompetizioneButtonISIC;
+    /**
+     * The S 1 seleziona squadra label isic.
+     */
     JLabel s1SelezionaSquadraLabelISIC;
+    /**
+     * The S 1 seleziona squadra combo isic.
+     */
     JComboBox s1SelezionaSquadraComboISIC;
+    /**
+     * The S 1 conferma inserimento isic.
+     */
     JButton s1ConfermaInserimentoISIC;
-    ////////////////////////
+    /**
+     * The S 1 seleziona tipo trofeo label at.
+     */
+////////////////////////
     //ASSEGNA TROFEO
     JLabel s1SelezionaTipoTrofeoLabelAT;
+    /**
+     * The S 1 trofeo squadra radio at.
+     */
     JRadioButton s1TrofeoSquadraRadioAT;
+    /**
+     * The S 1 trofeo individuale radio at.
+     */
     JRadioButton s1TrofeoIndividualeRadioAT;
+    /**
+     * The Group at.
+     */
     ButtonGroup groupAT;
+    /**
+     * The S 1 conferma scelta trofeo button at.
+     */
     JButton s1ConfermaSceltaTrofeoButtonAT;
+    /**
+     * The S 1 annulla scelta trofeo button at.
+     */
     JButton s1AnnullaSceltaTrofeoButtonAT;
+    /**
+     * The S 1 seleziona trofeo label at.
+     */
     JLabel s1SelezionaTrofeoLabelAT;
+    /**
+     * The S 1 seleziona trofeo combo at.
+     */
     JComboBox s1SelezionaTrofeoComboAT;
+    /**
+     * The S 1 conferma scelta trofeo 2 button at.
+     */
     JButton s1ConfermaSceltaTrofeo2ButtonAT;
+    /**
+     * The S 1 annulla scelta trofeo 2 button at.
+     */
     JButton s1AnnullaSceltaTrofeo2ButtonAT;
+    /**
+     * The S 1 scegli tra idonei label at.
+     */
     JLabel s1ScegliTraIdoneiLabelAT;
+    /**
+     * The S 1 scegli tra idonei combo at.
+     */
     JComboBox s1ScegliTraIdoneiComboAT;
+    /**
+     * The S 1 scegli tra idonei uguali label at.
+     */
     JLabel s1ScegliTraIdoneiUgualiLabelAT;
+    /**
+     * The S 1 scegli tra idonei uguali combo at.
+     */
     JComboBox s1ScegliTraIdoneiUgualiComboAT;
+    /**
+     * The S 1 conferma inserimento at.
+     */
     JButton s1ConfermaInserimentoAT;
+    /**
+     * The S 1 scelta anno assegnazione label at.
+     */
     JLabel s1SceltaAnnoAssegnazioneLabelAT;
+    /**
+     * The S 1 scelta anno assegnazione combo at.
+     */
     JComboBox s1SceltaAnnoAssegnazioneComboAT;
 
+    /**
+     * The Nazioni.
+     */
     String[] nazioni = {"Italia", "Spagna", "Germania", "Inghilterra", "Francia", "Belgio", "Portogallo", "Russia"};
+    /**
+     * The Internazioanli.
+     */
     String[] internazioanli = {"Europeo", "Mondiale", "Americano"};
+    /**
+     * The Step 1 modifica.
+     */
     JComboBox step1Modifica;
+    /**
+     * The Step 1 to step 2 modifica.
+     */
     JButton step1ToStep2Modifica = new JButton("Next");
     private Controller controller; // Aggiunto campo per il controller
 
+    /**
+     * Instantiates a new Home admin.
+     *
+     * @throws IOException the io exception
+     */
     public HomeAdmin() throws IOException {
         controller = new Controller();
         //Carico stemmi laterali
