@@ -1,6 +1,5 @@
 package view;
-import model.ConnessioneDB;
-
+import controller.Controller;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -9,9 +8,9 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 
 public class Home implements ActionListener {
+    public Controller controler;
     private final JButton tastoLogin;
     private final JButton tastoRegister;
     private final JButton loginReset;
@@ -19,6 +18,7 @@ public class Home implements ActionListener {
     public static JTextField login;
     private final JPasswordField password;
     private final JFrame Home;
+    private final JLabel utenteNonTrovato;
     private JPanel panelHome;
 
     BufferedImage bufferedImage = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Logo.png"));
@@ -42,12 +42,10 @@ public class Home implements ActionListener {
     ImageIcon nascondi = new ImageIcon(imageNascondi);
 
     public Home() throws IOException {
-
-        ConnessioneDB DB = new ConnessioneDB();
-
-        Connection conn = DB.connect_to_db("postgres","postgres","password");
         
         Home = new JFrame();
+
+        controler = new Controller();
 
         JLabel logoSito = new JLabel();
         logoSito.setIcon(sito);
@@ -75,7 +73,7 @@ public class Home implements ActionListener {
         inserireCredenziali.setFont(new Font("Times",Font.BOLD, 20));
 
         JLabel emailLabel = new JLabel();
-        emailLabel.setText("Email:");
+        emailLabel.setText("Nome Utente:");
         emailLabel.setBounds(100, 80, 500, 300);
         emailLabel.setSize(400, 400);
         emailLabel.setFont(new Font("Times",Font.BOLD, 20));
@@ -89,12 +87,11 @@ public class Home implements ActionListener {
 
 
         //EMAIL
-        login = new JTextField();
+        login = new JTextField("Inserisci il nome utente.");
         login.setBounds(240, 260, 300, 40);
         login.setFont(new Font("Consolas", Font.PLAIN, 20));
         login.setBorder(new LineBorder(Color.DARK_GRAY, 2, true));
         login.setForeground(Color.LIGHT_GRAY);
-        login.setText("Enter the email.");
         login.addFocusListener(new FocusListener()
         {
             @Override
@@ -115,13 +112,12 @@ public class Home implements ActionListener {
 
 
         //PASSWORD
-        password = new JPasswordField();
+        password = new JPasswordField("Inserisci la password.");
         password.setBounds(240, 320, 300, 40);
         password.setFont(new Font("Consolas", Font.PLAIN, 20));
         password.setBorder(new LineBorder(Color.DARK_GRAY, 2, true));
         password.setForeground(Color.LIGHT_GRAY);
         password.setEchoChar((char)0);
-        password.setText("Enter the password.");
         password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -144,7 +140,7 @@ public class Home implements ActionListener {
         });
 
         //BUTTON LOGIN
-        tastoLogin = new JButton("Login");
+        tastoLogin = new JButton("Accedi");
         tastoLogin.setBounds(240, 390, 140 , 40);
         tastoLogin.addActionListener(this);
         tastoLogin.setBackground(Color.DARK_GRAY);
@@ -152,12 +148,19 @@ public class Home implements ActionListener {
         tastoLogin.setBorder(new LineBorder(Color.GRAY, 3, true));
 
         //BUTTON REGISTER
-        tastoRegister = new JButton("Register");
+        tastoRegister = new JButton("Registrati");
         tastoRegister.setBounds(400, 390, 140 , 40);
         tastoRegister.addActionListener(this);
         tastoRegister.setBackground(Color.DARK_GRAY);
         tastoRegister.setForeground(Color.LIGHT_GRAY);
         tastoRegister.setBorder(new LineBorder(Color.GRAY, 3, true));
+
+        //UTENTE NOT FOUND
+        utenteNonTrovato = new JLabel("<html>"+"Utente"+"<br>"+"Non trovato"+"</html>");
+        utenteNonTrovato.setBounds(600, 260, 200, 100);
+        utenteNonTrovato.setFont(new Font("Times",Font.BOLD, 18));
+        utenteNonTrovato.setForeground(Color.RED);
+        utenteNonTrovato.hide();
 
         //FRAME
         Home.add(benvenutoSu);
@@ -171,6 +174,7 @@ public class Home implements ActionListener {
         Home.add(login);
         Home.add(loginReset);
         Home.add(passIcon);
+        Home.add(utenteNonTrovato);
         Home.setLayout(null);
         Home.setVisible(true);
         Home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -203,25 +207,25 @@ public class Home implements ActionListener {
             String userLogin = login.getText();
             String userPassword = String.copyValueOf(password.getPassword());
 
-            Home.setVisible(false);
-            if(userLogin.equals("1") && userPassword.equals("1"))
-            {
-                Home.setVisible(false);
-                try {
-                    HomeAdmin vaiHomeAdmin = new HomeAdmin();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+            switch (controler.checkUserEPass(userLogin, userPassword)) {
+                case 1:
+                    Home.setVisible(false);
+                    try {
+                        HomeAdmin vaiHomeAdmin = new HomeAdmin();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                case 2:
+                    Home.setVisible(false);
+                    try {
+                        HomeUtente vaiHomeUtente = new HomeUtente();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                case -1:
+                    utenteNonTrovato.show();
             }
-            else
-            {
-                Home.setVisible(false);
-                try {
-                    HomeUtente vaiHomeUtente = new HomeUtente();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
+
         }
     }
 
@@ -239,7 +243,7 @@ public class Home implements ActionListener {
     }
 
     private void JTexFieldFocusGained(java.awt.event.FocusEvent evt){
-        if (login.getText().equals("Enter the email.")){
+        if (login.getText().equals("Inserisci il nome utente.")){
             login.setText("");
             login.setForeground(Color.DARK_GRAY);
         }
@@ -247,13 +251,13 @@ public class Home implements ActionListener {
 
     private void JTexFieldFocusLost(java.awt.event.FocusEvent evt){
         if (login.getText().equals("")){
-            login.setText("Enter the email.");
+            login.setText("Inserisci il nome utente.");
             login.setForeground(Color.LIGHT_GRAY);
         }
     }
 
     private void JPasswordFieldFocusGained(java.awt.event.FocusEvent evt){
-        if (password.getText().equals("Enter the password.")){
+        if (password.getText().equals("Inserisci la password.")){
             password.setText("");
             password.setEchoChar('●');
             password.setForeground(Color.DARK_GRAY);
@@ -262,7 +266,7 @@ public class Home implements ActionListener {
 
     private void JPasswordFieldFocusLost(java.awt.event.FocusEvent evt){
         if (password.getText().equals("")){
-            password.setText("Enter the password.");
+            password.setText("Inserisci la password.");
             password.setEchoChar((char)0);
             password.setForeground(Color.LIGHT_GRAY);
         }

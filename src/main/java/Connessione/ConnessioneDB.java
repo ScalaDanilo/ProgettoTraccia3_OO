@@ -1,8 +1,10 @@
-package model;
+package Connessione;
+
+import DAO.ConnessioneDAO;
 
 import java.sql.*;
 
-public class ConnessioneDB {
+public class ConnessioneDB implements ConnessioneDAO {
     public Connection connect_to_db(String dbname, String user, String pass) {
 
         Connection conn = null;
@@ -25,7 +27,7 @@ public class ConnessioneDB {
 
         return conn;
     }
-
+    /*
     public String prendiSquadreDalDB(Connection conn) {
         StringBuilder elencoSquadre = new StringBuilder();
 
@@ -53,6 +55,7 @@ public class ConnessioneDB {
 
         return elencoSquadre.length() > 0 ? elencoSquadre.substring(0, elencoSquadre.length() - 1) : "";
     }
+    */
 
 
 
