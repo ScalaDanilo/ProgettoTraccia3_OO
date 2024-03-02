@@ -9,13 +9,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * The type Utente postgre dao.
+ * The `UtentePostgreDAO` class implements the `HomeUtenteDAO` interface for retrieving information about football players from a PostgreSQL database.
  */
 public class UtentePostgreDAO implements HomeUtenteDAO {
+
     /**
-     * The Conn.
+     * The database connection.
      */
     Connection conn = new ConnessioneDB().connect_to_db("postgres","postgres","password");
+
+    /**
+     * Retrieves information about football players based on the given name.
+     *
+     * @param nome The name of the football player.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] Calciatori(String nome)
     {
@@ -32,7 +40,6 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
                 if (resultSet.next())
                 {
                     TotCalciatore = (resultSet.getString(1) != null) ? resultSet.getString(1).split(",") : new String[0];
-                    //System.out.println(TotCalciatore[0]);
                 }
             }
         } catch (SQLException e) {
@@ -42,6 +49,12 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves football players based on the specified role.
+     *
+     * @param ruolo The role of the football player.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] CalcRuolo(String ruolo) {
         String query = "SELECT * FROM ricercaperruolo(?)";
@@ -64,6 +77,12 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves football players based on the preferred foot.
+     *
+     * @param piede The preferred foot of the football player.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] CalcPiede(String piede) {
         String query = "SELECT * FROM visualizzaperpiedepr(?)";
@@ -86,6 +105,12 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves football players based on the number of goals scored.
+     *
+     * @param goal The number of goals scored by the football player.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] CalcGoalSegnati(int goal) {
         String query = "SELECT * FROM ricercapergoalsegnati(?)";
@@ -108,6 +133,12 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves football players based on the number of goals conceded.
+     *
+     * @param goal The number of goals conceded by the football player.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] CalcGoalSubiti(int goal) {
         String query = "SELECT * FROM ricercapergoalsubiti(?)";
@@ -130,6 +161,12 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves football players based on their age.
+     *
+     * @param eta The age of the football player.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] CalcEta(int eta) {
         String query = "SELECT * FROM ricercapereta(?)";
@@ -152,6 +189,12 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves football players based on the specified team.
+     *
+     * @param squadra The name of the football team.
+     * @return An array of strings containing information about the football player.
+     */
     @Override
     public String[] CalcSquadra(String squadra) {
         String query = "SELECT * FROM ricercapersquadra(?)";
@@ -174,6 +217,11 @@ public class UtentePostgreDAO implements HomeUtenteDAO {
         return TotCalciatore;
     }
 
+    /**
+     * Retrieves the top 10 football players based on the maximum number of goals scored.
+     *
+     * @return An array of strings containing the names of the top 10 football players.
+     */
     @Override
     public String[] Top() {
         String query = "SELECT C.nome FROM CALCIATORE AS C JOIN MILITANZA AS M ON C.Id_Giocatore = M.giocatore GROUP BY C.nome ORDER BY MAX(M.tirisegnati) LIMIT 10;";

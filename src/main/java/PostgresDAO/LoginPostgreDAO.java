@@ -6,14 +6,22 @@ import DAO.HomeDAO;
 import java.sql.*;
 
 /**
- * The type Login postgre dao.
+ * The `LoginPostgreDAO` class implements the `HomeDAO` interface for handling login-related data access operations in a PostgreSQL database.
  */
 public class LoginPostgreDAO implements HomeDAO {
+
     /**
-     * The Conn.
+     * The database connection.
      */
     Connection conn = new ConnessioneDB().connect_to_db("postgres","postgres","password");
-    //Connection conn = DB.connect_to_db("postgres","postgres","password");
+
+    /**
+     * Checks the priority level of a user based on the provided login and password.
+     *
+     * @param loginUser    The login username of the user.
+     * @param passwordUser The password of the user.
+     * @return An integer representing the priority level of the user. Returns -1 if the user is not found or an error occurs.
+     */
     @Override
     public int controllaPriority(String loginUser, String passwordUser) {
         int priority = -1;

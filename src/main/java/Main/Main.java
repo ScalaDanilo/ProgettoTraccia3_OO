@@ -1,4 +1,6 @@
-package view;
+package Main;
+
+import view.Home;
 
 import java.io.IOException;
 

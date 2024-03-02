@@ -1,6 +1,5 @@
 package controller;
 
-import DAO.HomeDAO;
 import PostgresDAO.HomeAdminPostgresDAO;
 import PostgresDAO.LoginPostgreDAO;
 import PostgresDAO.RegisterPostgreDAO;
@@ -17,16 +16,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
- * The type Controller.
+ * The Controller class handles the business logic and serves as an intermediary between the user interface and the data access objects.
  */
 public class Controller {
 
     /**
-     * Check user e pass int.
+     * Checks the priority of a user based on the provided username and password.
      *
-     * @param Username the username
-     * @param Password the password
-     * @return the int
+     * @param Username The username of the user.
+     * @param Password The password of the user.
+     * @return An integer representing the user priority (1 for admin, 2 for regular user, -1 for user not found).
      */
     public int checkUserEPass(String Username, String Password)
     {
@@ -36,11 +35,11 @@ public class Controller {
 
 
     /**
-     * Insert user.
+     * Inserts a new user with the provided username and password.
      *
-     * @param Username the username
-     * @param Password the password
-     * @throws Exception the exception
+     * @param Username The username of the new user.
+     * @param Password The password of the new user.
+     * @throws Exception If an error occurs during user insertion.
      */
     public void insertUser(String Username, String Password) throws Exception
     {
@@ -48,21 +47,23 @@ public class Controller {
     }
 
     /**
-     * Visualizza calciatori array list.
+     * Retrieves a list of football players based on the provided name.
      *
-     * @param nome the nome
-     * @return the array list
+     * @param nome The name used as a filter for retrieving players.
+     * @return An ArrayList containing Calciatori objects representing the football players matching the provided name.
      */
     public ArrayList<Calciatori> visualizzaCalciatori(String nome)
     {
         ArrayList<Calciatori> calc = new ArrayList<>();
 
+        // Iterates through the list of player data obtained from the database
         for (String c: new UtentePostgreDAO().Calciatori(nome))
         {
+            // Splits the player data into individual attributes
             String[] datiCalc = (c != null) ? c.split(" ") : new String[0];
             Calciatori calciatore = new Calciatori();
-            //System.out.println(datiCalc[0] + " " + datiCalc[1] + " " + datiCalc[2] + " " + datiCalc[3] + " " + datiCalc[4] + " " + datiCalc[5] + " " + datiCalc[6] + " " + datiCalc[7]);
 
+            // Sets the attributes of the Calciatori object
             calciatore.setNome(datiCalc[0]);
             calciatore.setCognome(datiCalc[1]);
             calciatore.setDataNascita(datiCalc[2]);
@@ -72,17 +73,17 @@ public class Controller {
             calciatore.setId_Giocatore(datiCalc[6]);
             calciatore.setValoreMercato(Double.valueOf(datiCalc[7]));
 
-
+            // Adds the Calciatori object to the ArrayList
             calc.add(calciatore);
         }
         return calc;
     }
 
     /**
-     * Visualizza calc ruolo string [ ].
+     * Retrieves an array of strings representing football players based on the specified role.
      *
-     * @param ruolo the ruolo
-     * @return the string [ ]
+     * @param ruolo The role used as a filter for retrieving players.
+     * @return A String array containing player information matching the provided role.
      */
     public String[] visualizzaCalcRuolo(String ruolo)
     {
@@ -90,10 +91,10 @@ public class Controller {
     }
 
     /**
-     * Visualizza calc piede pr array list.
+     * Retrieves an ArrayList of football players based on the specified preferred foot.
      *
-     * @param piede the piede
-     * @return the array list
+     * @param piede The preferred foot used as a filter for retrieving players.
+     * @return An ArrayList of Calciatori objects containing player information matching the provided preferred foot.
      */
     public ArrayList<Calciatori> visualizzaCalcPiedePR(String piede)
     {
@@ -119,10 +120,10 @@ public class Controller {
     }
 
     /**
-     * Visualizza calc goal segnati string [ ].
+     * Retrieves an array of football players based on the specified number of goals scored.
      *
-     * @param goal the goal
-     * @return the string [ ]
+     * @param goal The number of goals used as a filter for retrieving players.
+     * @return An array of strings containing information about players who have scored the specified number of goals.
      */
     public String[] visualizzaCalcGoalSegnati(int goal)
     {
@@ -130,10 +131,10 @@ public class Controller {
     }
 
     /**
-     * Visualizza calc goal subiti string [ ].
+     * Retrieves an array of football players based on the specified number of goals conceded.
      *
-     * @param goal the goal
-     * @return the string [ ]
+     * @param goal The number of goals conceded used as a filter for retrieving players.
+     * @return An array of strings containing information about players who have conceded the specified number of goals.
      */
     public  String[] visualizzaCalcGoalSubiti(int goal)
     {
@@ -141,10 +142,10 @@ public class Controller {
     }
 
     /**
-     * Visualizza calc eta array list.
+     * Retrieves an ArrayList of football players based on the specified age.
      *
-     * @param eta the eta
-     * @return the array list
+     * @param eta The age used as a filter for retrieving players.
+     * @return An ArrayList of Calciatori objects containing information about players who have the specified age.
      */
     public ArrayList<Calciatori> visualizzaCalcEta(int eta)
     {
@@ -170,10 +171,10 @@ public class Controller {
     }
 
     /**
-     * Visualizza calc squadra string [ ].
+     * Retrieves an array of football players based on the specified team.
      *
-     * @param squadra the squadra
-     * @return the string [ ]
+     * @param squadra The team name used as a filter for retrieving players.
+     * @return An array of String objects containing information about players who belong to the specified team.
      */
     public String[] visualizzaCalcSquadra(String squadra)
     {
@@ -181,9 +182,9 @@ public class Controller {
     }
 
     /**
-     * Top bottom panel string [ ].
+     * Retrieves an array of String objects representing data for the bottom panel.
      *
-     * @return the string [ ]
+     * @return An array of String objects containing information for the bottom panel.
      */
     public String[] TopBottomPanel(){return new UtentePostgreDAO().Top();}
 

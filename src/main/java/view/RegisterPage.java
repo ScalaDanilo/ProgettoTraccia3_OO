@@ -13,43 +13,151 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
+/**
+ * The `RegisterPage` class represents a graphical user interface for user registration.
+ * It includes input fields for username and password, with additional features like
+ * password visibility toggling and error message displays.
+ *
+ */
 public class RegisterPage implements ActionListener {
 
+    /**
+     * The `JFrame` instance representing the registration frame.
+     */
     JFrame frameReg;
+
+    /**
+     * The label for the email input field.
+     */
     JLabel emailLabel;
+
+    /**
+     * The label for the password input field.
+     */
     JTextField emailTextField;
+
+    /**
+     * The password input field for entering the password.
+     */
     JLabel passwordLabel;
+
+    /**
+     * The password input field for entering the password.
+     */
     JPasswordField passwordField;
+
+    /**
+     * The label for confirming the password.
+     */
     JLabel ripetiPasswordLabel;
+
+    /**
+     * The password input field for confirming the password.
+     */
     JPasswordField ripetiPasswordField;
+
+    /**
+     * The button for confirming the registration.
+     */
     JButton confermaRegistrazione;
+
+    /**
+     * The button for resetting the email input field.
+     */
     JButton resetEmail;
+
+    /**
+     * The toggle button for password visibility.
+     */
     JToggleButton passIcon;
+
+    /**
+     * The second toggle button for password visibility.
+     */
     JToggleButton passIcon2;
+
+    /**
+     * The label indicating that the entered passwords do not match.
+     */
     JLabel passNonCoincide;
+
+    /**
+     * The label indicating that the user already exists.
+     */
     JLabel utenteEsiste;
+
+    /**
+     * The label indicating that the username cannot be empty.
+     */
     JLabel utenteVuoto;
+
+    /**
+     * The controller for handling registration logic.
+     */
     Controller controller;
 
+    /**
+     * Buffered image for the reset button.
+     */
     BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\reset.png"));
+
+    /**
+     * The scaled image for the reset button.
+     */
     Image image3 = bufferedImage3.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+
+    /**
+     * The `ImageIcon` for the reset button.
+     */
     ImageIcon reset = new ImageIcon(image3);
 
+    /**
+     * Buffered image for the show password button.
+     */
     BufferedImage bufferedMostra = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\mostra.png"));
+
+    /**
+     * The scaled image for the show password button.
+     */
     Image imageMostra = bufferedMostra.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+
+    /**
+     * The `ImageIcon` for the show password button.
+     */
     ImageIcon mostra = new ImageIcon(imageMostra);
 
+    /**
+     * Buffered image for the hide password button.
+     */
     BufferedImage bufferedNascondi = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\nascondi.png"));
+
+    /**
+     * The scaled image for the hide password button.
+     */
     Image imageNascondi = bufferedNascondi.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+
+    /**
+     * The `ImageIcon` for the hide password button.
+     */
     ImageIcon nascondi = new ImageIcon(imageNascondi);
 
+    /**
+     * Constructs a new instance of the RegisterPage class.
+     * Initializes the graphical user interface (GUI) components for user registration.
+     * The constructor sets up the JFrame, labels, text fields, buttons, and other UI elements.
+     * It also configures the appearance, positioning, and event listeners for these components.
+     * The constructor instantiates a Controller for handling registration logic.
+     *
+     * @throws IOException If an error occurs while reading image files.
+     */
     public RegisterPage() throws IOException {
-
+        // Initialize the main JFrame for user registration.
         frameReg = new JFrame();
 
+        // Instantiate the Controller for handling registration logic.
         controller = new Controller();
 
-        //email
+        // Set up UI components for email input.
         emailLabel = new JLabel();
         emailLabel.setText("Inserire username:");
         emailLabel.setBounds(40, 40, 200, 40);
@@ -78,7 +186,7 @@ public class RegisterPage implements ActionListener {
         resetEmail.setBackground(Color.GRAY);
         resetEmail.addActionListener(this);
 
-        //password1
+        // Set up UI components for password input.
         passwordLabel = new JLabel();
         passwordLabel.setBounds(40, 100, 200, 40);
         passwordLabel.setText("Inserire password:");
@@ -113,7 +221,7 @@ public class RegisterPage implements ActionListener {
             }
         });
 
-        //password2
+        // Set up UI components for confirming the password.
         ripetiPasswordLabel = new JLabel();
         ripetiPasswordLabel.setBounds(40, 160, 200, 40);
         ripetiPasswordLabel.setText("Conferma password:");
@@ -148,7 +256,7 @@ public class RegisterPage implements ActionListener {
             }
         });
 
-        //Tasto ConfermaRegistrazione
+        // Set up the "Registrati" button and its appearance.
         confermaRegistrazione = new JButton();
         confermaRegistrazione.setBounds(245, 240, 200, 40);
         confermaRegistrazione.setText("Registrati");
@@ -156,28 +264,26 @@ public class RegisterPage implements ActionListener {
         confermaRegistrazione.setForeground(Color.LIGHT_GRAY);
         confermaRegistrazione.addActionListener(this);
 
-        //LABEL PER LE DUE PASSWORD CHE NON COINCIDONO
+        // Set up labels for error messages.
         passNonCoincide = new JLabel("Le due password non coincidono.");
         passNonCoincide.setBounds(200,260,400,100);
         passNonCoincide.setFont(new Font("Times",Font.BOLD, 18));
         passNonCoincide.setForeground(Color.RED);
         passNonCoincide.hide();
 
-        //UTENTE GIA' ESISTENTE
         utenteEsiste = new JLabel("L'utente già esiste.");
         utenteEsiste.setBounds(260,260,400,100);
         utenteEsiste.setFont(new Font("Times",Font.BOLD, 18));
         utenteEsiste.setForeground(Color.RED);
         utenteEsiste.hide();
 
-        //USERNAME VUOTO
         utenteVuoto = new JLabel("Non puoi registrarti con i campi vuoti.");
         utenteVuoto.setBounds(185,260,400,100);
         utenteVuoto.setFont(new Font("Times",Font.BOLD, 18));
         utenteVuoto.setForeground(Color.RED);
         utenteVuoto.hide();
 
-        //FRAME REGISTRAZIONE
+        // Add UI components to the main JFrame and configure its appearance.
         frameReg.add(emailLabel);
         frameReg.add(emailTextField);
         frameReg.add(resetEmail);
@@ -199,40 +305,55 @@ public class RegisterPage implements ActionListener {
         frameReg.getContentPane().setBackground(Color.LIGHT_GRAY);
     }
 
+    /**
+     * Handles action events triggered by user interactions with the graphical user interface.
+     * This method is part of the ActionListener interface and is invoked when specific
+     * registered components, such as buttons, are interacted with.
+     *
+     * @param e The ActionEvent representing the user's action.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Check if the action event is associated with the resetEmail button.
+        if(e.getSource() == resetEmail) {
+            // Clear the content of the emailTextField.
+            emailTextField.setText("");
+        }
 
-        if(e.getSource() == resetEmail) emailTextField.setText("");
-
+        // Check if the action event is associated with the confermaRegistrazione button.
         if(e.getSource() == confermaRegistrazione) {
+            // Retrieve the user input for login, password, and repeated password.
             String userLogin = emailTextField.getText();
             String userPassword = String.copyValueOf(passwordField.getPassword());
             String userPasswordRepeat = String.copyValueOf(ripetiPasswordField.getPassword());
-            
-            if (userLogin.equals("Inserisci il nome utente.") || userPassword.equals("Inserisci la password.") || userPasswordRepeat.equals("Inserisci la password."))
-            {
+
+            // Check if any of the input fields is in its default placeholder state.
+            if (userLogin.equals("Inserisci il nome utente.") || userPassword.equals("Inserisci la password.") || userPasswordRepeat.equals("Inserisci la password.")) {
+                // Display an error message for empty fields.
                 utenteVuoto.show();
                 utenteEsiste.hide();
                 passNonCoincide.hide();
             } else {
-                if (userPassword.equals(userPasswordRepeat)){
+                // Check if the entered passwords match.
+                if (userPassword.equals(userPasswordRepeat)) {
                     try {
+                        // Attempt to insert the user into the database using the Controller.
                         controller.insertUser(userLogin, userPassword);
 
+                        // Close the registration frame and open the home page.
                         frameReg.dispose();
                         Home ritornaAllaHome = new Home();
-                    } /*catch (SQLIntegrityConstraintViolationException ex){
+                    } catch (SQLIntegrityConstraintViolationException ex) {
+                        // Display an error message if the user already exists in the database.
                         utenteVuoto.hide();
                         utenteEsiste.show();
                         passNonCoincide.hide();
-                    }
-                    */
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
+                        // Throw a runtime exception if an unexpected error occurs.
                         throw new RuntimeException(ex);
                     }
-                }
-                else
-                {
+                } else {
+                    // Display an error message if the passwords do not match.
                     utenteVuoto.hide();
                     utenteEsiste.hide();
                     passNonCoincide.show();

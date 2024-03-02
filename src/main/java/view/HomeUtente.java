@@ -19,112 +19,76 @@ import java.util.ArrayList;
 import static java.lang.Integer.parseInt;
 
 /**
- * The type Home utente.
+ * HomeUtente class represents the main GUI for common users in the application.
+ * It implements ActionListener to handle user interactions, and it serves as
+ * one of two home screens catering to different types of users (common user and admin).
+ * This class provides a user-friendly interface for searching and viewing player
+ * information based on various criteria. The class includes panels, labels, tables,
+ * and icons, all integrated with the Controller to perform user-initiated actions.
  */
 public class HomeUtente implements ActionListener{
     /**
-     * The Controller.
+     * The Controller instance for handling application logic.
      */
     public Controller controller;
+
     /**
-     * The Welcome.
+     * JLabel for displaying a welcome message.
      */
     public JLabel Welcome;
+
     /**
-     * The Text.
+     * JLabel for displaying additional text.
      */
     public JLabel text;
+
     /**
-     * The Scelta.
+     * JComboBox for selecting search criteria.
      */
     public JComboBox scelta;
+
     /**
-     * The Scelte.
+     * An array of strings representing different search criteria.
      */
     public String[] scelte;
+
     /**
-     * The Selezione.
+     * String representing the current selection criteria.
      */
     public String selezione;
+
     /**
-     * The Ricerca.
+     * JTextField for user input during searches.
      */
     public JTextField ricerca;
+
     /**
-     * The Ricerca button.
+     * JButton for triggering the search functionality.
      */
     public JButton ricercaButton;
+
     /**
-     * The Home utente.
+     * JFrame representing the main application window.
      */
     public JFrame HomeUtente;
-    /**
-     * The Top panel.
-     */
+
+    // Panels representing different sections of the GUI
     public JPanel TopPanel;
-    /**
-     * The Central panel.
-     */
     public JPanel CentralPanel;
-    /**
-     * The Down panel.
-     */
     public JPanel DownPanel;
-    /**
-     * The Right panel.
-     */
     public JPanel RightPanel;
-    /**
-     * The Left panel.
-     */
     public JPanel LeftPanel;
-    /**
-     * The Default label.
-     */
     public JLabel defaultLabel;
-    /**
-     * The Top label.
-     */
     public JLabel topLabel;
-    /**
-     * The Default panel.
-     */
     public JPanel defaultPanel;
-    /**
-     * The Name panel.
-     */
     public JPanel NamePanel;
-    /**
-     * The Eta panel.
-     */
     public JPanel EtaPanel;
-    /**
-     * The Goal subiti panel.
-     */
     public JPanel GoalSubitiPanel;
-    /**
-     * The Goal segnati panel.
-     */
     public JPanel GoalSegnatiPanel;
-    /**
-     * The Ruolo panel.
-     */
     public JPanel RuoloPanel;
-    /**
-     * The Piede pr panel.
-     */
     public JPanel PiedePRPanel;
-    /**
-     * The Squadra panel.
-     */
     public JPanel SquadraPanel;
-    /**
-     * The Debug panel.
-     */
     public JPanel debugPanel;
-    /**
-     * The Table.
-     */
     public JTable Table;
     /**
      * The Table scroll pane.
@@ -138,89 +102,47 @@ public class HomeUtente implements ActionListener{
      * The Top table scroll pane.
      */
     public JScrollPane TopTableScrollPane;
-    /**
-     * The Buffered image.
-     */
+
+    // Image and icon resources
+
     BufferedImage bufferedImage = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Logo.png"));
-    /**
-     * The Image.
-     */
     Image image = bufferedImage.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-    /**
-     * The Sito.
-     */
     ImageIcon sito = new ImageIcon(image);
-    /**
-     * The Buffered image background.
-     */
+
     BufferedImage bufferedImageBackground = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Sfondo.jpg"));
-    /**
-     * The Image background.
-     */
     Image imageBackground = bufferedImageBackground.getScaledInstance(1000, 600, Image.SCALE_DEFAULT);
-    /**
-     * The Sito background.
-     */
     ImageIcon sitoBackground = new ImageIcon(imageBackground);
-    /**
-     * The Buffered image 2.
-     */
+
     BufferedImage bufferedImage2 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\university.png"));
-    /**
-     * The Image 2.
-     */
     Image image2 = bufferedImage2.getScaledInstance(180, 180, Image.SCALE_DEFAULT);
-    /**
-     * The Federico.
-     */
     ImageIcon federico = new ImageIcon(image2);
-    /**
-     * The Buffered image 3.
-     */
+
     BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\ricerca.png"));
-    /**
-     * The Image 3.
-     */
     Image image3 = bufferedImage3.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-    /**
-     * The Ricerca icon.
-     */
     ImageIcon ricercaIcon = new ImageIcon(image3);
-    /**
-     * The Buffered image left.
-     */
+
     BufferedImage bufferedImageLeft = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Immagine1.jpg"));
-    /**
-     * The Image left.
-     */
     Image imageLeft = bufferedImageLeft.getScaledInstance(195, 400, Image.SCALE_DEFAULT);
-    /**
-     * The Left icon.
-     */
     ImageIcon leftIcon = new ImageIcon(imageLeft);
-    /**
-     * The Buffered image right.
-     */
+
     BufferedImage bufferedImageRight = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Immagine2.jpg"));
-    /**
-     * The Image right.
-     */
     Image imageRight = bufferedImageRight.getScaledInstance(180, 400, Image.SCALE_DEFAULT);
-    /**
-     * The Right icon.
-     */
     ImageIcon rightIcon = new ImageIcon(imageRight);
 
     /**
-     * Instantiates a new Home utente.
+     * The HomeUtente class represents the user's home interface in the application.
+     * It sets up a JFrame with various panels, labels, and components to create a user-friendly interface.
      *
-     * @throws IOException the io exception
+     * @throws IOException If an input/output exception occurs during the instantiation of the class.
      */
     public HomeUtente() throws IOException {
+        // Initialize the main JFrame for the user's home
         HomeUtente = new JFrame();
 
+        // Create a controller instance for handling user interactions
         controller = new Controller();
 
+        // Create and configure JLabels for site and university logos
         JLabel logoSito = new JLabel();
         logoSito.setIcon(sito);
         logoSito.setBounds(0,0,200,200);
@@ -242,11 +164,12 @@ public class HomeUtente implements ActionListener{
         leftImage.setIcon(leftIcon);
         leftImage.setBounds(0,0,195,400);
 
+        // Create and configure components for the top panel, including search functionality
+
+        // Initialize an array of search options
         scelte = new String[]{"Nome", "Ruolo", "Piede", "Goal segnati", "Goal subiti", "Età", "Squadra"};
 
-        //PANNELLO SUPERIORE
-
-        //TASTO DI RICERCA
+        // Initialize and configure a search button
         ricercaButton = new JButton("", ricercaIcon);
         ricercaButton.setBounds(930,120,50,50);
         ricercaButton.setContentAreaFilled(false);
@@ -254,6 +177,7 @@ public class HomeUtente implements ActionListener{
         ricercaButton.setBorder(BorderFactory.createMatteBorder(1,0,1,2,Color.BLACK));
         ricercaButton.addActionListener(this);
 
+        // Initialize and configure a JTextField for user input
         ricerca = new JTextField("Cerca il giocatore per...");
         ricerca.setBounds(630, 120,300, 50);
         ricerca.setFont(new Font("Consolas", Font.PLAIN, 15));
@@ -272,7 +196,7 @@ public class HomeUtente implements ActionListener{
             }
         });
 
-        //SCELTA DELLA RICERCA
+        // Initialize and configure a JComboBox for selecting search criteria
         scelta = new JComboBox<String>();
         for (String str: scelte) {
             scelta.addItem(str);
@@ -295,7 +219,7 @@ public class HomeUtente implements ActionListener{
         scelta.setBorder(BorderFactory.createMatteBorder(1,1,1,0,Color.BLACK));
         scelta.setBackground(Color.WHITE);
 
-        //SCRITTA WELCOME
+        // Initialize and configure JLabels for welcome messages
         Welcome = new JLabel();
         Welcome.setText("Benvenuto " + Home.login.getText());
 
@@ -306,7 +230,7 @@ public class HomeUtente implements ActionListener{
         text.setBounds(220,-100,300,300);
         text.setFont(new Font("Times", Font.BOLD, 15));
 
-        //MODIFICHE E AGGIUNTE DEI COMPONENTI AL PANNELLO SUPERIORE
+        // Initialize the top panel and add components to it
         TopPanel = new JPanel();
         TopPanel.add(Welcome);
         TopPanel.add(text);
@@ -319,15 +243,13 @@ public class HomeUtente implements ActionListener{
         TopPanel.add(ricercaButton);
         TopPanel.setBorder(BorderFactory.createMatteBorder(0,0,5,0,Color.BLACK));
 
-        //PANNELLO CENTRALE
+        // Initialize various panels for different search criteria, including default and debug panels
 
-        //SCRITTA PANNELLO CENTRALE DEFAULT
         defaultLabel = new JLabel("Nessuna ricerca eseguita.");
         defaultLabel.setBounds(50,100,650,200);
         defaultLabel.setFont(new Font("Times", Font.BOLD, 40));
         defaultLabel.setForeground(Color.LIGHT_GRAY);
 
-        //PANNELLO CENTRALE DEFAULT
         defaultPanel = new JPanel();
         Color transparentColorDefault = new Color(defaultPanel.getBackground().getRed(),
                 defaultPanel.getBackground().getGreen(),
@@ -339,7 +261,6 @@ public class HomeUtente implements ActionListener{
         defaultPanel.setBorder(null);
         defaultPanel.add(defaultLabel);
 
-        //PANNELLO CENTRALE RICERCA PER NOME
         NamePanel = new JPanel();
         Color transparentColorName = new Color(NamePanel.getBackground().getRed(),
                 NamePanel.getBackground().getGreen(),
@@ -351,7 +272,6 @@ public class HomeUtente implements ActionListener{
         NamePanel.setBounds(100,50,600,350);
         NamePanel.hide();
 
-        //PANNELLO CENTRALE RICERCA PER RUOLO
         RuoloPanel = new JPanel();
         Color transparentColorRuolo = new Color(RuoloPanel.getBackground().getRed(),
                 RuoloPanel.getBackground().getGreen(),
@@ -363,7 +283,6 @@ public class HomeUtente implements ActionListener{
         RuoloPanel.setBorder(null);
         RuoloPanel.hide();
 
-        //PANNELLO CENTRALE RICERCA PER PIEDE PREFERITO
         PiedePRPanel = new JPanel();
         Color transparentColorPiede = new Color(PiedePRPanel.getBackground().getRed(),
                 PiedePRPanel.getBackground().getGreen(),
@@ -375,7 +294,6 @@ public class HomeUtente implements ActionListener{
         PiedePRPanel.setBorder(null);
         PiedePRPanel.hide();
 
-        //PANNELLO CENTRALE RICERCA PER GOAL SEGNATI
         GoalSegnatiPanel = new JPanel();
         Color transparentColorGoalSe = new Color(GoalSegnatiPanel.getBackground().getRed(),
                 GoalSegnatiPanel.getBackground().getGreen(),
@@ -387,7 +305,6 @@ public class HomeUtente implements ActionListener{
         GoalSegnatiPanel.setBorder(null);
         GoalSegnatiPanel.hide();
 
-        //PANNELLO CENTRALE RICERCA PER GOAL SUBITI
         GoalSubitiPanel = new JPanel();
         Color transparentColorGoalSu = new Color(GoalSubitiPanel.getBackground().getRed(),
                 GoalSubitiPanel.getBackground().getGreen(),
@@ -399,7 +316,6 @@ public class HomeUtente implements ActionListener{
         GoalSubitiPanel.setBorder(null);
         GoalSubitiPanel.hide();
 
-        //PANNELLO CENTRALE RICERCA PER ETA'
         EtaPanel = new JPanel();
         Color transparentColorEta = new Color(EtaPanel.getBackground().getRed(),
                 EtaPanel.getBackground().getGreen(),
@@ -411,7 +327,6 @@ public class HomeUtente implements ActionListener{
         EtaPanel.setBorder(null);
         EtaPanel.hide();
 
-        //PANNELLO CENTRALE RICERCA PER SQUADRA
         SquadraPanel = new JPanel();
         Color transparentColorSquadra = new Color(SquadraPanel.getBackground().getRed(),
                 SquadraPanel.getBackground().getGreen(),
@@ -423,11 +338,10 @@ public class HomeUtente implements ActionListener{
         SquadraPanel.setBorder(null);
         SquadraPanel.hide();
 
-        //PANNELLO UTILIZZATO PER EVITARE PROBLEMI
         debugPanel = new JPanel();
         debugPanel.hide();
 
-        //PANNELLO CENTRALE
+        // Initialize the central panel with background image and default content
         CentralPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -448,12 +362,11 @@ public class HomeUtente implements ActionListener{
         CentralPanel.add(SquadraPanel);
         CentralPanel.add(debugPanel);
 
-        //LABEL DELLA TOP
+        // Initialize JLabel and JTable for displaying top players with most goals
         topLabel = new JLabel("Top 10 giocatori con più goal segnati: ");
         topLabel.setBounds(50,20,400,50);
         topLabel.setFont(new Font("Times", Font.BOLD, 20));
 
-        //TABELLA DELLA TOP
         String[] TopTableTitles = {"1° Posto", "2° Posto", "3° Posto", "4° Posto", "5° Posto", "6° Posto", "7° Posto", "8° Posto", "9° Posto", "10° Posto"};
 
         TopTable = new JTable();
@@ -467,42 +380,36 @@ public class HomeUtente implements ActionListener{
             }
         };
 
-        // Imposta il nuovo modello sulla tabella
         TopTable.setModel(uneditableModel);
         TopTableScrollPane = new JScrollPane(TopTable);
         TopTableScrollPane.setBounds(20,70,1140,39);
+
         DefaultTableModel model = (DefaultTableModel) TopTable.getModel();
-
         model.setColumnIdentifiers(TopTableTitles);
-
         model.addRow(controller.TopBottomPanel());
 
-        //PANNELLO IN BASSO
+        // Initialize the bottom panel and add components to it
         DownPanel = new JPanel();
         DownPanel.setLayout(null);
         DownPanel.setBounds(0,600,1200,200);
-        //DownPanel.setBackground(Color.CYAN);
         DownPanel.setBorder(BorderFactory.createMatteBorder(5,0,0,0,Color.BLACK));
         DownPanel.add(topLabel);
         DownPanel.add(TopTableScrollPane);
 
-        //PANNELLO A DESTRA
+        // Initialize right and left panels with image components
         RightPanel = new JPanel();
         RightPanel.setLayout(null);
         RightPanel.setBounds(1000,200,200,400);
         RightPanel.add(rightImage);
-        //RightPanel.setBackground(Color.ORANGE);
         RightPanel.setBorder(BorderFactory.createMatteBorder(0,5,0,0,Color.BLACK));
 
-        //PANNELLO A SINISTRA
         LeftPanel = new JPanel();
         LeftPanel.setLayout(null);
         LeftPanel.setBounds(0,200,200,400);
         LeftPanel.add(leftImage);
-        //LeftPanel.setBackground(Color.ORANGE);
         LeftPanel.setBorder(BorderFactory.createMatteBorder(0,0,0,5,Color.BLACK));
 
-        //HOME
+        // Set up the main JFrame by adding panels and configuring its properties
         HomeUtente.add(TopPanel, BorderLayout.NORTH);
         HomeUtente.add(CentralPanel, BorderLayout.CENTER);
         HomeUtente.add(DownPanel, BorderLayout.SOUTH);
@@ -515,26 +422,56 @@ public class HomeUtente implements ActionListener{
         HomeUtente.setResizable(false);
     }
 
+    /**
+     * This method is triggered when the focus is gained by the JTextField 'ricerca'.
+     * It is designed to handle the event by checking if the text in the field is a default placeholder
+     * ("Cerca il giocatore per..." + selezione) and, if so, clears the text and changes the text color.
+     *
+     * @param evt The FocusEvent representing the focus gained event.
+     */
     private void JTexFieldFocusGained(FocusEvent evt){
+        // Check if the current text in the JTextField is the default placeholder
         if (ricerca.getText().equals("Cerca il giocatore per..." + selezione)){
+            // Clear the text and set text color to dark gray
             ricerca.setText("");
             ricerca.setForeground(Color.DARK_GRAY);
         }
     }
 
+    /**
+     * This method is triggered when the focus is lost from the JTextField 'ricerca'.
+     * It checks if the current text in the field is empty and, if so, restores the default placeholder text
+     * ("Cerca il giocatore per..." + selezione) and sets the text color to light gray.
+     *
+     * @param evt The FocusEvent representing the focus lost event.
+     */
     private void JTexFieldFocusLost(FocusEvent evt){
+        // Check if the current text in the JTextField is empty
         if (ricerca.getText().equals("")){
+            // Restore the default placeholder text and set text color to light gray
             ricerca.setText("Cerca il giocatore per..." + selezione);
             ricerca.setForeground(Color.LIGHT_GRAY);
         }
     }
 
+    /**
+     * This method is triggered when an action event occurs, typically caused by user interaction.
+     * It handles actions related to the search functionality based on the selected criteria (selezione).
+     * The method dynamically updates the panels to display search results in a JTable or shows the default panel.
+     *
+     * @param e The ActionEvent representing the action triggered.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Initialize an ArrayList to store Calciatori objects
         ArrayList<Calciatori> calciatori;
+
+        // Check the selected search criteria (selezione)
         if (selezione.equals("Nome")) {
+            // Check if the search text is not the default placeholder
             if (!ricerca.getText().equals("Cerca il giocatore per..." + selezione))
             {
+                // Hide default panel and show the panel for searching by Name
                 defaultPanel.hide();
                 NamePanel.show();
                 RuoloPanel.hide();
@@ -544,6 +481,7 @@ public class HomeUtente implements ActionListener{
                 EtaPanel.hide();
                 SquadraPanel.hide();
 
+                // Configure the JTable for displaying search results
                 String[] TableTitles = {"Nome", "Cognome", "Data di Nascita", "Piede Preferito", "Data Ritiro", "Nazionalità", "Valore Mercato"};
 
                 Table = new JTable();
@@ -556,8 +494,6 @@ public class HomeUtente implements ActionListener{
                         return false;
                     }
                 };
-
-                // Imposta il nuovo modello sulla tabella
                 Table.setModel(uneditableModel);
                 Table.setShowGrid(false);
                 Table.setBorder(null);
@@ -567,8 +503,9 @@ public class HomeUtente implements ActionListener{
                 TableScrollPane.setViewportBorder(null);
                 TableScrollPane.setBorder(null);
                 TableScrollPane.setBounds(0,0,600,350);
-                DefaultTableModel model = (DefaultTableModel) Table.getModel();
 
+                // Set up the model and populate the table with search results
+                DefaultTableModel model = (DefaultTableModel) Table.getModel();
                 model.setColumnIdentifiers(TableTitles);
                 calciatori = controller.visualizzaCalciatori(ricerca.getText());
                 for (Calciatori calc : calciatori)
@@ -576,11 +513,12 @@ public class HomeUtente implements ActionListener{
                     String[] row = {calc.Nome, calc.Cognome, calc.DataNascita, calc.PiedePreferito, calc.DataRitiro, calc.Nazionalita, String.valueOf(calc.ValoreMercato)};
                     model.addRow(row);
                 }
+
+                // Remove existing components from NamePanel and add the updated table
                 NamePanel.removeAll();
-
-
                 NamePanel.add(TableScrollPane, BorderLayout.CENTER);
             } else {
+                // Show default panel if the search text is the default placeholder
                 defaultPanel.show();
                 NamePanel.hide();
                 RuoloPanel.hide();
@@ -615,8 +553,6 @@ public class HomeUtente implements ActionListener{
                         return false;
                     }
                 };
-
-                // Imposta il nuovo modello sulla tabella
                 Table.setModel(uneditableModel);
                 Table.setShowGrid(false);
                 Table.setBorder(null);
@@ -626,8 +562,8 @@ public class HomeUtente implements ActionListener{
                 TableScrollPane.setViewportBorder(null);
                 TableScrollPane.setBorder(null);
                 TableScrollPane.setBounds(0,0,600,350);
-                DefaultTableModel model = (DefaultTableModel) Table.getModel();
 
+                DefaultTableModel model = (DefaultTableModel) Table.getModel();
                 model.setColumnIdentifiers(RuoloTableTitles);
                 for (String calc : controller.visualizzaCalcRuolo(ricerca.getText()))
                 {
@@ -635,11 +571,9 @@ public class HomeUtente implements ActionListener{
                     String[] row = {datiCalc[0], datiCalc[1], datiCalc[2], datiCalc[3], datiCalc[4], datiCalc[5]};
                     model.addRow(row);
                 }
+
                 RuoloPanel.removeAll();
-
-
                 RuoloPanel.add(TableScrollPane, BorderLayout.CENTER);
-
             } else {
                 defaultPanel.show();
                 NamePanel.hide();

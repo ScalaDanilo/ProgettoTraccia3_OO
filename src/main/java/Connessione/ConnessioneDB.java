@@ -4,7 +4,19 @@ import DAO.ConnessioneDAO;
 
 import java.sql.*;
 
+/**
+ * Provides methods to establish a connection to the PostgreSQL database.
+ */
 public class ConnessioneDB implements ConnessioneDAO {
+
+    /**
+     * Connects to the PostgreSQL database.
+     *
+     * @param dbname The name of the database to connect to.
+     * @param user   The username for the database connection.
+     * @param pass   The password for the database connection.
+     * @return A Connection object representing the established database connection.
+     */
     public Connection connect_to_db(String dbname, String user, String pass) {
 
         Connection conn = null;
@@ -27,36 +39,4 @@ public class ConnessioneDB implements ConnessioneDAO {
 
         return conn;
     }
-    /*
-    public String prendiSquadreDalDB(Connection conn) {
-        StringBuilder elencoSquadre = new StringBuilder();
-
-        try {
-            if (conn != null) {
-                Statement stmt = conn.createStatement();
-                String sql = "SELECT nomeSquadra FROM squadre";
-                ResultSet rs = stmt.executeQuery(sql);
-
-                while (rs.next()) {
-                    String nomeSquadra = rs.getString("nomeSquadra");
-                    elencoSquadre.append(nomeSquadra).append(",");
-                }
-
-                rs.close();
-                stmt.close();
-
-            } else {
-                System.out.println("Connessione non stabilita");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return elencoSquadre.length() > 0 ? elencoSquadre.substring(0, elencoSquadre.length() - 1) : "";
-    }
-    */
-
-
-
 }
