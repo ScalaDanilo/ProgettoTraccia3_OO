@@ -9,17 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * The Home class represents the main user interface for the application.
- * It includes components for login and registration functionalities.
- */
 public class Home implements ActionListener {
-    /**
-     * The Controller for handling application logic.
-     */
     public Controller controler;
 
-    // Components for the user interface
     private final JButton tastoLogin;
     private final JButton tastoRegister;
     private final JButton loginReset;
@@ -30,40 +22,31 @@ public class Home implements ActionListener {
     private final JLabel utenteNonTrovato;
     private JPanel panelHome;
 
-    // Icons for images
-    BufferedImage bufferedImage = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\Logo.png"));
+    BufferedImage bufferedImage = ImageIO.read(new File("src/main/resources/Logo.png"));
     Image image = bufferedImage.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
     ImageIcon sito = new ImageIcon(image);
 
-    BufferedImage bufferedImage2 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\university.png"));
+    BufferedImage bufferedImage2 = ImageIO.read(new File("src/main/resources/university.png"));
     Image image2 = bufferedImage2.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
     ImageIcon federico = new ImageIcon(image2);
 
-    BufferedImage bufferedImage3 = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\reset.png"));
+    BufferedImage bufferedImage3 = ImageIO.read(new File("src/main/resources/reset.png"));
     Image image3 = bufferedImage3.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
     ImageIcon reset = new ImageIcon(image3);
 
-    BufferedImage bufferedMostra = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\mostra.png"));
+    BufferedImage bufferedMostra = ImageIO.read(new File("src/main/resources/mostra.png"));
     Image imageMostra = bufferedMostra.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
     ImageIcon mostra = new ImageIcon(imageMostra);
 
-    BufferedImage bufferedNascondi = ImageIO.read(new File("C:\\Users\\Danilo\\Desktop\\Secondo anno\\Progetto OO e BD\\OO\\ProgettoTraccia3_OO_e_BD\\nascondi.png"));
+    BufferedImage bufferedNascondi = ImageIO.read(new File("src/main/resources/nascondi.png"));
     Image imageNascondi = bufferedNascondi.getScaledInstance(30, 30, Image.SCALE_DEFAULT);
     ImageIcon nascondi = new ImageIcon(imageNascondi);
 
-    /**
-     * The Home class represents the main user interface for the application, focusing on login and registration.
-     *
-     * @throws IOException if an error occurs while reading images.
-     */
     public Home() throws IOException {
-        // Initializing the main frame
         Home = new JFrame();
 
-        // Initializing the controller for handling application logic
         controler = new Controller();
 
-        // Setting up logos and labels
         JLabel logoSito = new JLabel();
         logoSito.setIcon(sito);
         logoSito.setBounds(10,10,200,200);
@@ -102,7 +85,6 @@ public class Home implements ActionListener {
         passwordLabel.setSize(400, 400);
         passwordLabel.setFont(new Font("Times",Font.BOLD, 20));
 
-        // Setting up text fields, buttons, and icons
         login = new JTextField("Inserisci il nome utente.");
         login.setBounds(240, 260, 300, 40);
         login.setFont(new Font("Consolas", Font.PLAIN, 20));
@@ -172,7 +154,6 @@ public class Home implements ActionListener {
         utenteNonTrovato.setForeground(Color.RED);
         utenteNonTrovato.hide();
 
-        // Setting up the main frame
         Home.add(benvenutoSu);
         Home.add(discoveryFootball);
         Home.add(inserireCredenziali);
@@ -195,16 +176,8 @@ public class Home implements ActionListener {
         Home.add(logoFedericoII);
     }
 
-    /**
-     * Initializes the Home frame.
-     */
     public void initHome(){Home.setVisible(true);}
 
-    /**
-     * Handles the action events for buttons in the Home frame.
-     *
-     * @param e The ActionEvent to be processed.
-     */
     @Override
     public void actionPerformed(ActionEvent e) {
         // Resetting the login text field
