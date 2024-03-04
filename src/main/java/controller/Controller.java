@@ -187,13 +187,12 @@ public class Controller {
      * @return An array of String objects containing information for the bottom panel.
      */
     public String[] TopBottomPanel(){return new UtentePostgreDAO().Top();}
-
     /**
-     * Inserisci sponsor secondario.
+     * Inserts a secondary sponsor for a given team.
      *
-     * @param nomeSquadra the nome squadra
-     * @param nomeSponsor the nome sponsor
-     * @throws SQLException the sql exception
+     * @param nomeSquadra The name of the team.
+     * @param nomeSponsor The name of the secondary sponsor.
+     * @throws SQLException if an error occurs during the insertion of the secondary sponsor.
      */
     public void inserisciSponsorSecondario(String nomeSquadra, String nomeSponsor) throws SQLException {
         Squadre squadra = new Squadre(nomeSquadra);
@@ -204,24 +203,24 @@ public class Controller {
     }
 
     /**
-     * Inserisci calc ruolo spon squa mil.
+     * Inserts player information along with playing position, sponsorship, and team details.
      *
-     * @param nome the nome
-     * @param cognome the cognome
-     * @param nazion the nazion
-     * @param dataNascita the data nascita
-     * @param dataRitiro the data ritiro
-     * @param piedePR the piede pr
-     * @param ruoli the ruoli
-     * @param nomeSponsor the nome sponsor
-     * @param nomeSquadra the nome squadra
-     * @param nazSquadra the naz squadra
-     * @param dataInizio the data inizio
-     * @param dataFine the data fine
-     * @param tiriSegnati the tiri segnati
-     * @param partiteGiocate the partite giocate
-     * @param goalSubiti the goal subiti
-     * @throws SQLException the sql exception
+     * @param nome            The first name of the player.
+     * @param cognome         The last name of the player.
+     * @param nazion          The nationality of the player.
+     * @param dataNascita     The date of birth of the player.
+     * @param dataRitiro      The optional date of retirement of the player.
+     * @param piedePR         The preferred foot of the player.
+     * @param ruoli           The playing position(s) of the player.
+     * @param nomeSponsor     The name of the sponsor associated with the player.
+     * @param nomeSquadra     The name of the team the player belongs to.
+     * @param nazSquadra      The nationality of the team.
+     * @param dataInizio      The start date of the player's association with the team.
+     * @param dataFine        The optional end date of the player's association with the team.
+     * @param tiriSegnati     The number of goals scored by the player.
+     * @param partiteGiocate  The number of matches played by the player.
+     * @param goalSubiti      The number of goals conceded by the player (for goalkeepers).
+     * @throws SQLException if an error occurs during the insertion process.
      */
     public void inserisci_Calc_Ruolo_Spon_Squa_Mil(String nome, String cognome, String nazion, Date dataNascita, Optional<Date> dataRitiro, String piedePR, String ruoli, String nomeSponsor,
                                                    String nomeSquadra, String nazSquadra, Date dataInizio, Optional<Date> dataFine, int tiriSegnati, int partiteGiocate, String goalSubiti) throws SQLException{
@@ -233,12 +232,12 @@ public class Controller {
     }
 
     /**
-     * Inserisci squadra.
+     * Inserts a new team with the given name, primary sponsor, and nationality.
      *
-     * @param nomeSquadra the nome squadra
-     * @param nomeSponsor the nome sponsor
-     * @param nazione the nazione
-     * @throws SQLException the sql exception
+     * @param nomeSquadra The name of the team.
+     * @param nomeSponsor The name of the primary sponsor.
+     * @param nazione      The nationality of the team.
+     * @throws SQLException if an error occurs during the insertion of the team.
      */
     public void inserisciSquadra(String nomeSquadra, String nomeSponsor, String nazione) throws SQLException {
 
@@ -247,10 +246,10 @@ public class Controller {
     }
 
     /**
-     * Prendi squadre dal db string.
+     * Retrieves a string representation of teams from the database.
      *
-     * @return the string
-     * @throws SQLException the sql exception
+     * @return A String containing information about teams retrieved from the database.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiSquadreDalDB() throws SQLException{
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
@@ -259,12 +258,14 @@ public class Controller {
     }
 
     /**
-     * Check militanza int.
+     * Checks the eligibility of a player's association with a team based on birthdate, start date, and end date.
      *
-     * @param dataN the data n
-     * @param dataI the data i
-     * @param dataF the data f
-     * @return the int
+     * @param dataN The player's date of birth.
+     * @param dataI The start date of the player's association with the team.
+     * @param dataF The optional end date of the player's association with the team.
+     * @return An integer code indicating the result of the eligibility check.
+     *         0 - Eligible, 1 - Invalid end date month, 2 - End date not after start date,
+     *         3 - Invalid start date month, 4 - Insufficient age at the start date.
      */
     public int checkMilitanza(String dataN, String dataI, String dataF) {
 
@@ -321,15 +322,15 @@ public class Controller {
     }
 
     /**
-     * Inserisci competizione.
+     * Inserts a new competition with the given details.
      *
-     * @param nomeComp the nome comp
-     * @param annoInizio the anno inizio
-     * @param nazione the nazione
-     * @param tipo the tipo
-     * @param nomeTrofeo the nome trofeo
-     * @param annoFine the anno fine
-     * @throws SQLException the sql exception
+     * @param nomeComp   The name of the competition.
+     * @param annoInizio  The starting year of the competition.
+     * @param nazione    The nationality of the competition.
+     * @param tipo       The type of the competition.
+     * @param nomeTrofeo The name of the trophy associated with the competition.
+     * @param annoFine    The ending year of the competition.
+     * @throws SQLException if an error occurs during the insertion of the competition.
      */
     public void inserisciCompetizione(String nomeComp, Integer annoInizio, String nazione, String tipo, String nomeTrofeo, Integer annoFine) throws SQLException {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
@@ -338,26 +339,26 @@ public class Controller {
     }
 
     /**
-     * Vedi quanti calciatori int.
+     * Retrieves the number of football players with the given name and surname.
      *
-     * @param nome the nome
-     * @param cognome the cognome
-     * @return the int
+     * @param nome    The first name of the player.
+     * @param cognome The last name of the player.
+     * @return The number of football players with the specified name and surname.
      */
     public int vediQuantiCalciatori(String nome, String cognome) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
         return homeAdminDAO.vediQuantiCalciatori(nome, cognome);
     }
-
     /**
-     * Prendi giocatori uguali dal db string.
+     * Retrieves information about football players with the given name and surname from the database.
      *
-     * @param nome the nome
-     * @param cognome the cognome
-     * @return the string
-     * @throws SQLException the sql exception
+     * @param nome    The first name of the player.
+     * @param cognome The last name of the player.
+     * @return A String containing information about football players with the specified name and surname.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
+
     public String prendiGiocatoriUgualiDalDB(String nome, String cognome) throws SQLException{
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
@@ -365,11 +366,11 @@ public class Controller {
     }
 
     /**
-     * Prendi ruolo calciatore facile boolean.
+     * Checks if a football player with the given name and surname has an easily determinable playing position.
      *
-     * @param nome the nome
-     * @param cognome the cognome
-     * @return the boolean
+     * @param nome    The first name of the player.
+     * @param cognome The last name of the player.
+     * @return true if the playing position is easily determinable, false otherwise.
      */
     public boolean prendiRuoloCalciatoreFacile(String nome, String cognome) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
@@ -378,47 +379,45 @@ public class Controller {
     }
 
     /**
-     * Prendi ruolo calciatore difficile boolean.
+     * Checks if a football player with the given name, surname, nationality, and date of birth has a determinable playing position.
      *
-     * @param nome the nome
-     * @param cognome the cognome
-     * @param nazione the nazione
-     * @param nascita the nascita
-     * @return the boolean
+     * @param nome    The first name of the player.
+     * @param cognome The last name of the player.
+     * @param nazione The nationality of the player.
+     * @param nascita The date of birth of the player.
+     * @return true if the playing position is determinable, false otherwise.
      */
     public boolean prendiRuoloCalciatoreDifficile(String nome, String cognome, String nazione, Date nascita) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
         return homeAdminDAO.prendiRuoloCalciatoreDifficile(nome, cognome, nazione, nascita);
     }
-
     /**
-     * Gets id giocatore.
+     * Retrieves the ID of a football player with the given name, surname, nationality, and date of birth.
      *
-     * @param nome the nome
-     * @param cognome the cognome
-     * @param nazione the nazione
-     * @param nascita the nascita
-     * @return the id giocatore
+     * @param nome    The first name of the player.
+     * @param cognome The last name of the player.
+     * @param nazione The nationality of the player.
+     * @param nascita The date of birth of the player.
+     * @return The ID of the football player.
      */
     public String getIDGiocatore(String nome, String cognome, String nazione, Date nascita) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
         return homeAdminDAO.getIDGiocatore(nome, cognome, nazione, nascita);
     }
-
     /**
-     * Inserisci militanza.
+     * Inserts player affiliation details, including previous and new memberships.
      *
-     * @param idGiocatore the id giocatore
-     * @param dataFineExMilitanzaDate the data fine ex militanza date
-     * @param dataInizioNuovaMilitanzaDate the data inizio nuova militanza date
-     * @param dataFineNuovaMilitanzaDate the data fine nuova militanza date
-     * @param squadra the squadra
-     * @param tiriSegnatiInt the tiri segnati int
-     * @param partiteGiocateInt the partite giocate int
-     * @param goalSubitiInt the goal subiti int
-     * @throws SQLException the sql exception
+     * @param idGiocatore               The ID of the player.
+     * @param dataFineExMilitanzaDate   The optional end date of the player's previous affiliation.
+     * @param dataInizioNuovaMilitanzaDate The start date of the player's new affiliation.
+     * @param dataFineNuovaMilitanzaDate   The optional end date of the player's new affiliation.
+     * @param squadra                   The team the player is affiliated with.
+     * @param tiriSegnatiInt            The number of goals scored by the player.
+     * @param partiteGiocateInt         The number of matches played by the player.
+     * @param goalSubitiInt             The number of goals conceded by the player (for goalkeepers).
+     * @throws SQLException if an error occurs during the insertion process.
      */
     public void inserisciMilitanza (String idGiocatore, Optional<Date> dataFineExMilitanzaDate, Date dataInizioNuovaMilitanzaDate, Optional<Date> dataFineNuovaMilitanzaDate,
                                     String squadra, int tiriSegnatiInt, int partiteGiocateInt, String goalSubitiInt) throws SQLException {
@@ -433,10 +432,10 @@ public class Controller {
     }
 
     /**
-     * Prendi giocatori string.
+     * Retrieves information about all football players from the database.
      *
-     * @return the string
-     * @throws SQLException the sql exception
+     * @return A String containing information about all football players.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiGiocatori() throws SQLException{
         try {
@@ -448,35 +447,35 @@ public class Controller {
         }
     }
 
+
     /**
-     * Check last mil date.
+     * Checks the last affiliation end date for a given player.
      *
-     * @param idGiocatore the id giocatore
-     * @return the date
+     * @param idGiocatore The ID of the player.
+     * @return The last affiliation end date.
      */
     public Date checkLastMil(String idGiocatore) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
         return homeAdminDAO.checkLastMil(idGiocatore);
     }
-
     /**
-     * Prendi feature string.
+     * Retrieves additional features associated with a player.
      *
-     * @param id the id
-     * @return the string
+     * @param id The ID of the player.
+     * @return A String containing additional features associated with the player.
      */
+
     public String prendiFeature(String id) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
         return homeAdminDAO.prendiFeature(id);
     }
-
     /**
-     * Check data ritiro boolean.
+     * Checks if a player has a retirement date recorded.
      *
-     * @param id the id
-     * @return the boolean
+     * @param id The ID of the player.
+     * @return true if a retirement date is recorded, false otherwise.
      */
     public boolean checkDataRitiro(String id) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
@@ -485,10 +484,10 @@ public class Controller {
     }
 
     /**
-     * Inserisci data ritiro.
+     * Inserts a retirement date for a given player.
      *
-     * @param idGio the id gio
-     * @param dataRitiro the data ritiro
+     * @param idGio      The ID of the player.
+     * @param dataRitiro The retirement date.
      */
     public void inserisciDataRitiro(String idGio, Date dataRitiro) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
@@ -497,22 +496,22 @@ public class Controller {
     }
 
     /**
-     * Inserisci feature.
+     * Inserts additional features for a player.
      *
-     * @param idGiocatore the id giocatore
-     * @param feature the feature
+     * @param idGiocatore The ID of the player.
+     * @param feature     The additional feature to be inserted.
      */
     public void inserisciFeature(String idGiocatore, String feature) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
         homeAdminDAO.inserisciFeature(idGiocatore, feature);
     }
-
     /**
-     * Prendi competizioni string.
+     * Retrieves information about competitions from the database.
      *
-     * @return the string
+     * @return A String containing information about competitions.
      */
+
     public String prendiCompetizioni() {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
 
@@ -520,11 +519,11 @@ public class Controller {
     }
 
     /**
-     * Prendi anni string.
+     * Retrieves years associated with a specific competition.
      *
-     * @param comp the comp
-     * @return the string
-     * @throws SQLException the sql exception
+     * @param comp The name of the competition.
+     * @return A String containing years associated with the competition.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiAnni(String comp) throws SQLException {
         try {
@@ -537,10 +536,10 @@ public class Controller {
     }
 
     /**
-     * Check competizione string.
+     * Checks the existence of a competition.
      *
-     * @param competizione the competizione
-     * @return the string
+     * @param competizione The name of the competition.
+     * @return A String containing information about the competition's existence.
      */
     public String checkCompetizione(String competizione) {
         HomeAdminPostgresDAO homeAdminDAO = new HomeAdminPostgresDAO();
@@ -549,12 +548,12 @@ public class Controller {
     }
 
     /**
-     * Prendi squadreidonee string.
+     * Retrieves eligible teams for a specific competition and year.
      *
-     * @param comp the comp
-     * @param anno the anno
-     * @return the string
-     * @throws SQLException the sql exception
+     * @param comp The name of the competition.
+     * @param anno The year of the competition.
+     * @return A String containing information about eligible teams.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiSquadreidonee(String comp, int anno) throws SQLException{
         try {
@@ -567,10 +566,10 @@ public class Controller {
     }
 
     /**
-     * Prendi trofei individuali string.
+     * Retrieves information about individual trophies.
      *
-     * @return the string
-     * @throws SQLException the sql exception
+     * @return A String containing information about individual trophies.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiTrofeiIndividuali() throws SQLException{
         try {
@@ -583,11 +582,11 @@ public class Controller {
     }
 
     /**
-     * Prendi anni trofeo string.
+     * Retrieves years associated with a specific individual trophy.
      *
-     * @param trofeo the trofeo
-     * @return the string
-     * @throws SQLException the sql exception
+     * @param trofeo The name of the individual trophy.
+     * @return A String containing years associated with the individual trophy.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiAnniTrofeo(String trofeo) throws SQLException{
         try {
@@ -600,11 +599,11 @@ public class Controller {
     }
 
     /**
-     * Prendi giocatori validi string.
+     * Retrieves information about valid players for a specific year.
      *
-     * @param anno the anno
-     * @return the string
-     * @throws SQLException the sql exception
+     * @param anno The year for which players are considered valid.
+     * @return A String containing information about valid players.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiGiocatoriValidi(int anno) throws SQLException{
         try {
@@ -617,10 +616,10 @@ public class Controller {
     }
 
     /**
-     * Prendi trofei squadra string.
+     * Retrieves information about team trophies.
      *
-     * @return the string
-     * @throws SQLException the sql exception
+     * @return A String containing information about team trophies.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiTrofeiSquadra() throws SQLException {
         try {
@@ -633,12 +632,12 @@ public class Controller {
     }
 
     /**
-     * Prendi squadre idonee per trofeo string.
+     * Retrieves eligible teams for a specific team trophy and year.
      *
-     * @param anno the anno
-     * @param nomeTrof the nome trof
-     * @return the string
-     * @throws SQLException the sql exception
+     * @param anno     The year of the team trophy.
+     * @param nomeTrof The name of the team trophy.
+     * @return A String containing information about eligible teams for the specified team trophy and year.
+     * @throws SQLException if an error occurs during the retrieval process.
      */
     public String prendiSquadreIdoneePerTrofeo(int anno, String nomeTrof) throws SQLException {
         try {
@@ -651,12 +650,12 @@ public class Controller {
     }
 
     /**
-     * Inserisci trofeo individuale.
+     * Inserts an individual trophy for a player.
      *
-     * @param nomeTrofeo the nome trofeo
-     * @param anno the anno
-     * @param idGiocatore the id giocatore
-     * @throws SQLException the sql exception
+     * @param nomeTrofeo The name of the individual trophy.
+     * @param anno       The year of the individual trophy.
+     * @param idGiocatore The ID of the player receiving the trophy.
+     * @throws SQLException if an error occurs during the insertion process.
      */
     public void inserisciTrofeoIndividuale(String nomeTrofeo, int anno, String idGiocatore) throws SQLException {
         try {
@@ -669,12 +668,12 @@ public class Controller {
     }
 
     /**
-     * Inserisci trofeo di squadra.
+     * Inserts a team trophy for a squad.
      *
-     * @param nomeTrofeo the nome trofeo
-     * @param anno the anno
-     * @param squadra the squadra
-     * @throws SQLException the sql exception
+     * @param nomeTrofeo The name of the team trophy.
+     * @param anno       The year of the team trophy.
+     * @param squadra     The name of the squad receiving the trophy.
+     * @throws SQLException if an error occurs during the insertion process.
      */
     public void inserisciTrofeoDiSquadra(String nomeTrofeo, int anno, String squadra) throws SQLException {
         try {
@@ -687,12 +686,12 @@ public class Controller {
     }
 
     /**
-     * Inserisci squadra in competizione.
+     * Inserts a team into a competition for a specific year.
      *
-     * @param nomeSq the nome sq
-     * @param nomeCp the nome cp
-     * @param anno the anno
-     * @throws SQLException the sql exception
+     * @param nomeSq The name of the team.
+     * @param nomeCp The name of the competition.
+     * @param anno   The year of the competition.
+     * @throws SQLException if an error occurs during the insertion process.
      */
     public void inserisciSquadraInCompetizione(String nomeSq, String nomeCp, int anno) throws  SQLException {
         try {
